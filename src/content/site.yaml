@@ -1,0 +1,55 @@
+# ─────────────────────────────────────────────────────────────
+#  SITE SETTINGS — edit anything in quotes, save, and push.
+#  Both themes (/s and /r) read from this same file.
+# ─────────────────────────────────────────────────────────────
+
+# Which theme saahilmohal.com opens by default: "s" (Sonar) or "r" (Rolling Hills)
+defaultTheme: "r"
+
+name: "Saahil Mohal"
+eyebrow: "Mechanical Engineer · Georgia Tech · B.S./M.S. ’27"
+
+# The sentence under your name. Each theme can have its own.
+lede:
+  s: "I design electro-mechanical hardware for vehicles that operate underwater, at the surface, and in the air."
+  r: "Mechanical engineer at Georgia Tech. I build hardware for vehicles, and shoot aerial photography with a drone."
+
+# The small stat line under the hero. Add or remove lines freely.
+readout:
+  - label: "GPA"
+    value: "3.90"
+  - label: "Internships"
+    value: "3"
+  - label: "Base"
+    value: "Atlanta / D.C."
+  - label: "Status"
+    value: "Open to full-time, 2027"
+
+# "At a glance" lines — keep each one short.
+glance:
+  - "3 defense internships"
+  - "Underwater satcom"
+  - "F-35 computer vision"
+  - "HV power systems"
+  - "B.S. + M.S. by 2027"
+
+about: >-
+  I'm finishing an accelerated B.S. and M.S. in Mechanical Engineering at Georgia Tech,
+  with a focus on AI/ML applications. Outside of class I'm Technology Director for the
+  Interfraternity Council, a former ElectrifyGT project lead, an Eagle Scout, a pianist,
+  and a drone photographer. I spent Spring 2026 studying at Universidad Carlos III de Madrid.
+
+contact:
+  email: "saahil.mohal@gatech.edu"
+  linkedin: "https://linkedin.com/in/saahilmohal"
+  instagram: "https://instagram.com/saahil.snaps"
+  resume: "/resume.pdf"   # replace public/resume.pdf to update
+
+# Music button. Two options:
+#   file:    put an .mp3 in public/music/ and write "/music/yourfile.mp3" here (plays quietly, no pop-up)
+#   youtube: the video ID from a YouTube link (shows a small player in the corner)
+# If "file" is filled in, it wins.
+music:
+  label: "Music while you scroll"
+  file: ""
+  youtube: "edDS8aLpyhA"

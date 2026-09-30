@@ -1,0 +1,162 @@
+---
+// The whole homepage. Both /s and /r render this; only `theme` changes.
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import '../styles/site.css';
+import { site } from '../site';
+
+interface Props { theme: 's' | 'r' }
+const { theme } = Astro.props;
+const other = theme === 's' ? 'r' : 's';
+const themeName = { s: 'Sonar', r: 'Rolling Hills' };
+
+const experience = (await getCollection('experience')).sort((a, b) => b.data.start.localeCompare(a.data.start));
+const projects = (await getCollection('projects')).sort((a, b) => (b.data.date ?? '').localeCompare(a.data.date ?? ''));
+
+// Every image in src/photos/ becomes a gallery tile, newest filename first.
+const photoFiles = import.meta.glob<{ default: ImageMetadata }>('../photos/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}', { eager: true });
+const photos = Object.entries(photoFiles)
+  .sort(([a], [b]) => b.localeCompare(a))
+  .map(([path, mod]) => {
+    const file = path.split('/').pop()!.replace(/\.[^.]+$/, '');
+    const caption = file.replace(/^\d{4}(-\d{2})?(-\d{2})?-?/, '').replace(/[-_]+/g, ' ').trim();
+    return { src: mod.default, caption };
+  });
+
+const year = (s?: string) => (s ? s.slice(0, 4) : 'Now');
+const span = (a: string, b?: string) => (year(a) === year(b) ? year(a) : `${year(a)}–${year(b)}`);
+const typedName = theme === 'r' ? site.name.replace(' ', '\n') : site.name;
+const music = site.music ?? {};
+---
+<!doctype html>
+<html lang="en" data-theme={theme}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{site.name} · Mechanical Engineer</title>
+  <meta name="description" content={site.lede[theme]} />
+  <meta property="og:title" content={`${site.name} · Mechanical Engineer`} />
+  <meta property="og:description" content={site.lede[theme]} />
+  <meta name="theme-color" content={theme === 's' ? '#080808' : '#0c0a09'} />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="canonical" href={`https://saahilmohal.com/${theme}/`} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Archivo:wdth,wght@62..125,400..900&family=Hanken+Grotesk:wght@400;500;600&display=swap" />
+</head>
+<body>
+  <header class="hero">
+    <canvas id="hero-canvas" data-kind={theme} aria-hidden="true"></canvas>
+    <div class="shade"></div>
+    <div class="wrap top">
+      <nav class="nav" aria-label="Main">
+        {theme === 's'
+          ? <a class="mark" href={`/${theme}/`}><i></i>SAAHIL MOHAL</a>
+          : <a class="mark" href={`/${theme}/`}>{site.name}</a>}
+        <ul>
+          <li><a href="#experience">Work</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li class="opt"><a href="#photos">Photography</a></li>
+          {theme === 's' && <li class="opt"><a href={site.contact.resume}>Resume ↗</a></li>}
+        </ul>
+        {theme === 'r' && <a class="cta" href={site.contact.resume}>Resume</a>}
+      </nav>
+    </div>
+    <div class="wrap body">
+      <p class="eyebrow"><b>●</b>&nbsp; {site.eyebrow}</p>
+      <h1 aria-label={site.name}><span class="typed" data-text={typedName}>{typedName}</span><span class="caret" aria-hidden="true"></span></h1>
+      <p class="lede">{site.lede[theme]}</p>
+      <ul class="readout">
+        {site.readout.map((r: { label: string; value: string }) => <li>{r.label}<b>{r.value}</b></li>)}
+      </ul>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="block glance" aria-label="At a glance">
+      <div class="sec-h"><h2>At a glance</h2></div>
+      <ol>
+        {site.glance.map((g: string, i: number) => <li class={i === 0 ? 'on' : ''}><small>{String(i + 1).padStart(2, '0')}</small><span>{g}</span></li>)}
+      </ol>
+    </section>
+
+    <section class="block about" id="about">
+      <div class="sec-h"><h2>About</h2></div>
+      <p>{site.about}</p>
+    </section>
+
+    <section class="block" id="experience">
+      <div class="sec-h"><h2>Experience</h2><a href={site.contact.resume}>Full resume →</a></div>
+      {experience.map((e) => (
+        <article class="row">
+          <span class="yr">{span(e.data.start, e.data.end)}</span>
+          <div><h3 class="co">{e.data.company}</h3><span class="role">{e.data.role}</span></div>
+          <div class="desc">
+            <p>{e.data.summary}</p>
+            {e.data.tags.length > 0 && <ul class="tags">{e.data.tags.map((t) => <li>{t}</li>)}</ul>}
+          </div>
+        </article>
+      ))}
+    </section>
+
+    <section class="block" id="projects">
+      <div class="sec-h"><h2>Projects</h2></div>
+      {projects.map((p) => (
+        <article class="row">
+          <span class="yr">{p.data.date ? year(p.data.date) : '—'}</span>
+          <div><h3 class="co">{p.data.title}</h3>{p.data.kind && <span class="role">{p.data.kind}</span>}</div>
+          <div class="desc">
+            <p>{p.data.summary}</p>
+            {p.data.tags.length > 0 && <ul class="tags">{p.data.tags.map((t) => <li>{t}</li>)}</ul>}
+          </div>
+        </article>
+      ))}
+    </section>
+
+    <section class="block" id="skills">
+      <div class="sec-h"><h2>Skills map</h2><span>Coming soon</span></div>
+      <div class="map">
+        <svg viewBox="0 0 800 320" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g stroke="currentColor" stroke-opacity=".18" fill="none"><path d="M400 160 L200 80 M400 160 L190 240 M400 160 L610 70 M400 160 L620 250 M200 80 L90 50 M200 80 L110 130 M610 70 L720 40 M620 250 L730 280 M190 240 L80 270"/></g>
+          <g fill="currentColor" fill-opacity=".22"><circle cx="400" cy="160" r="7"/><circle cx="200" cy="80" r="5"/><circle cx="190" cy="240" r="5"/><circle cx="610" cy="70" r="5"/><circle cx="620" cy="250" r="5"/><circle cx="90" cy="50" r="3"/><circle cx="110" cy="130" r="3"/><circle cx="720" cy="40" r="3"/><circle cx="730" cy="280" r="3"/><circle cx="80" cy="270" r="3"/></g>
+        </svg>
+        <p>A map of skills and projects will live here.</p>
+      </div>
+    </section>
+
+    <section class="block" id="photos">
+      <div class="sec-h"><h2>From the air</h2><a href={site.contact.instagram}>@saahil.snaps →</a></div>
+      {photos.length > 0
+        ? <div class="photos">{photos.map((p) => (
+            <figure><Image src={p.src} alt={p.caption || 'Aerial photo'} widths={[400, 800]} sizes="(max-width: 760px) 50vw, 25vw" loading="lazy" />{p.caption && <figcaption>{p.caption}</figcaption>}</figure>
+          ))}</div>
+        : <div class="photos-empty">Drone photos go in the <b>src/photos</b> folder and appear here automatically.</div>}
+    </section>
+
+    <footer>
+      <span>{site.contact.email}</span>
+      <nav aria-label="Links">
+        <a href={site.contact.linkedin}>LinkedIn</a>
+        <a href={site.contact.instagram}>Instagram</a>
+        <a href={site.contact.resume}>Resume</a>
+        <a href={`/${other}/`}>View in {themeName[other]}</a>
+      </nav>
+    </footer>
+  </main>
+
+  {(music.file || music.youtube) && (
+    <button type="button" class="music" id="music" aria-pressed="false" data-file={music.file || ''} data-youtube={music.youtube || ''}>
+      <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="lbl">{music.label || 'Music'}</span>
+    </button>
+  )}
+
+  <script>
+    import { sonar } from '../scripts/hero-sonar';
+    import { hills } from '../scripts/hero-hills';
+    import { initPage } from '../scripts/page';
+    const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement;
+    const scene = canvas.dataset.kind === 's' ? sonar(canvas) : hills(canvas);
+    initPage(scene);
+  </script>
+</body>
+</html>
