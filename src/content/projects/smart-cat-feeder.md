@@ -1,6 +1,6 @@
 ---
 title: "Smart Cat Feeder"
-kind: "IoT automated pet feeding system"
+kind: "Automated pet feeding system"
 label: "Personal"
 order: 1
 date: 2025-08

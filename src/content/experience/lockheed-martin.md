@@ -23,7 +23,7 @@ Interned across two divisions, Rotary and Mission Systems (RMS) and Missiles and
 
 ## Machine learning for pilot selection
 
-Proposed an ML classification system for military pilot training, aimed at identifying pilots suited for an accelerated fighter pilot training stream. Designed custom simulation environments for automated specialization-track assignment, defined the data parameters, and interviewed veteran instructor pilots.
+Helped architect a project to identify pilots suited for an accelerated fighter pilot training stream. Defined the data parameters and interviewed veteran instructor pilots.
 
 ## Integrated Learning Environment
 
