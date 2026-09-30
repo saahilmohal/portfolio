@@ -11,8 +11,8 @@ eyebrow: "Georgia Tech · B.S./M.S. ’27"
 
 # The sentence under your name. Each theme can have its own.
 lede:
-  s: "Mechanical Engineer @ Georgia Tech. I build electrical and mechanical hardware for vehicles, and shoot aerial photography with a drone."
-  r: "Mechanical Engineer @ Georgia Tech. I build electrical and mechanical hardware for vehicles, and shoot aerial photography with a drone."
+  s: "Mechanical Engineer @ Georgia Tech. I build electrical and mechanical hardware for vehicles, and shoot aerial drone photography."
+  r: "Mechanical Engineer @ Georgia Tech. I build electrical and mechanical hardware for vehicles, and shoot aerial drone photography."
 
 # The small stat line under the hero. Add or remove lines freely.
 readout:
@@ -37,8 +37,7 @@ glance:
 about:
   education: >-
     I'm a Mechanical Engineering student at Georgia Tech, finishing my B.S. and M.S. together
-    in four years with a focus on AI/ML applications. I also spent Spring 2026 studying abroad
-    at Universidad Carlos III de Madrid in Spain.
+    in four years with a focus on robotics, computer vision, and AI/ML applications.
   professional: >-
     Most recently I was an Electro-Mechanical Integration Intern at Odin Dynamics in Los Angeles,
     working on an unmanned underwater vehicle: its Starlink communications module, a thruster
@@ -48,13 +47,13 @@ about:
     drafter. Along the way I've gotten to work on RF and structures, CFD, test rigs, computer vision,
     and machine learning.
   leadership: >-
-    I'm the Technology Director for Georgia Tech's Interfraternity Council, where I look after
-    digital infrastructure and technical operations, and before that I was its VP of Communications.
-    I'm also on the Woodruff School Student Advisory Council and the Executive Roundtable. I was a
-    Project Lead for ElectrifyGT, running projects to cut campus carbon emissions, and I've served
-    Delta Chi on its Judicial Board and as Scholarship & Professional Development Chair.
+    I serve on the WSSAC (Woodruff School Student Advisory Council), and also serve as the Technology Director 
+    for Georgia Tech's Interfraternity Council, where I look after digital infrastructure and technical operations.
+    I previously served on the IFC as VP of Communications, as well as a Project Lead for ElectrifyGT, running 
+    projects to cut campus carbon emissions. I've also served on the executive board in my fraternity, Delta Chi,
+    Scholarship & Professional Development Chair, Judicial Board Member, and currently as Homecoming Chair.
   personal: >-
-    Outside of engineering, I'm an Eagle Scout, a pianist, and an avid drone photographer.
+    Outside of engineering, I'm a lifelong Eagle Scout, a pianist, and an avid drone photographer.
 
 contact:
   email: "saahil.mohal@gatech.edu"
