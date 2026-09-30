@@ -7,7 +7,7 @@ const site = YAML.parse(readFileSync(new URL('./src/content/site.yaml', import.m
 const def = site.defaultTheme === 's' ? 's' : 'r';
 
 export default defineConfig({
-  site: 'https://saahilmohal.com',
+  site: 'https://www.saahilmohal.com',
   trailingSlash: 'ignore',
   redirects: { '/': `/${def}/` },
   integrations: [{
