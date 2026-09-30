@@ -1,0 +1,11 @@
+---
+import { Image } from 'astro:assets';
+import { photos } from '../lib';
+interface Props { limit?: number }
+const list = Astro.props.limit ? photos.slice(0, Astro.props.limit) : photos;
+---
+{list.length > 0
+  ? <div class="photos">{list.map((p) => (
+      <figure><Image src={p.src} alt={p.caption || 'Aerial photo'} widths={[400, 800, 1600]} sizes="(max-width: 760px) 50vw, 25vw" loading="lazy" />{p.caption && <figcaption>{p.caption}</figcaption>}</figure>
+    ))}</div>
+  : <div class="photos-empty">Drone photos go in the <b>src/photos</b> folder and appear here automatically.</div>}

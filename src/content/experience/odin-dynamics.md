@@ -8,6 +8,14 @@ summary: "Led design of a Ku-band satcom subsystem for a UUV, including a fused-
 tags: ["RF modeling", "Structures", "HV power", "Test rigs"]
 ---
 
+<!--
+  ✏️  Write as much as you want below. Everything here shows on this job's own page.
+  Ideas: the problem, what you owned, how you approached it, results, what you learned.
+  Add a photo: put it in public/images/ and write  ![caption](/images/your-photo.jpg)
+-->
+
+## Highlights
+
 - Led end-to-end design of a deployable Ku-band satellite-communications subsystem for an unmanned underwater vehicle, owning requirements and MIL-STD selection. Wrote Python RF models that optimized a fused-quartz radome layup to under 0.3 dB insertion loss across ±55° scan, and re-architected a flat window failing at 300 m depth into a curved membrane-compression geometry (>8 FoS).
 - Designed, procured, and assembled an underwater thruster dynamometer rated to 2,500 N / 160 N·m through a passed Critical Design Review.
 - Led the field campaign qualifying Starlink for submerged maritime use, logging 44 telemetry channels and showing sub-millimeter water films cause 82% packet loss.

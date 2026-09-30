@@ -42,8 +42,13 @@ about: >-
 contact:
   email: "saahil.mohal@gatech.edu"
   linkedin: "https://linkedin.com/in/saahilmohal"
-  instagram: "https://instagram.com/saahil.snaps"
-  resume: "/resume.pdf"   # replace public/resume.pdf to update
+  instagram: "https://www.instagram.com/saahils.snaps/"
+  instagramHandle: "@saahils.snaps"
+  resume: "https://saahilmohal.com/resume-redirect"   # Cloudflare page rule points this at your Google Doc
+
+# Text at the top of the Photography page.
+photographyIntro: >-
+  Aerial photography from wherever I happen to be flying. More on Instagram.
 
 # Music button. Two options:
 #   file:    put an .mp3 in public/music/ and write "/music/yourfile.mp3" here (plays quietly, no pop-up)

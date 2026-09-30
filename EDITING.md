@@ -8,10 +8,12 @@ Both themes (`/s` Sonar and `/r` Rolling Hills) update together.
 |------------------------------------|---------|
 | Change my headline, stats, "at a glance", about, links, music | Edit `src/content/site.yaml` |
 | Change which theme saahilmohal.com opens | In `site.yaml`, set `defaultTheme: "s"` or `"r"` |
-| Add a job                          | Copy a file in `src/content/experience/`, rename it (e.g. `2027-zipline.md`), change the text |
+| Add a job                          | Copy a file in `src/content/experience/`, rename it (e.g. `zipline.md`), change the text. The file name becomes the page address. |
 | Add a project                      | Same, in `src/content/projects/` |
 | Add drone photos                   | Drop .jpg files into `src/photos/` (name like `2026-05-madrid-palace.jpg`; the words become the caption) |
-| Update my resume                   | Replace `public/resume.pdf` (keep the same name) |
+| Write more about a job or project  | Open its file and write below the `---` lines. That text appears on its own page. |
+| Add pictures to a job/project page | Put the image in `public/images/`, then write `![caption](/images/name.jpg)` in the file |
+| Update my resume                   | Update the Google Doc. The site links to saahilmohal.com/resume-redirect, a Cloudflare page rule |
 | Use my own music file              | Put an .mp3 in `public/music/`, then set `music.file: "/music/name.mp3"` in `site.yaml` |
 
 Easiest way to edit on GitHub: open the file, press the pencil icon, edit, then "Commit changes".

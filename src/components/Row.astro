@@ -1,0 +1,14 @@
+---
+// One line in an Experience or Projects list. The whole row links to its detail page.
+interface Props { href: string; when: string; title: string; sub?: string; summary: string; tags: string[] }
+const { href, when, title, sub, summary, tags } = Astro.props;
+---
+<a class="row" href={href}>
+  <span class="yr">{when}</span>
+  <div><h3 class="co">{title}</h3>{sub && <span class="role">{sub}</span>}</div>
+  <div class="desc">
+    <p>{summary}</p>
+    {tags.length > 0 && <ul class="tags">{tags.map((t) => <li>{t}</li>)}</ul>}
+    <span class="more">Read more →</span>
+  </div>
+</a>

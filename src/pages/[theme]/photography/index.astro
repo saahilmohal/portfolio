@@ -1,0 +1,16 @@
+---
+import Base from '../../../components/Base.astro';
+import Gallery from '../../../components/Gallery.astro';
+import { site, photos, themePaths, type Theme } from '../../../lib';
+export const getStaticPaths = themePaths;
+const theme = Astro.params.theme as Theme;
+---
+<Base theme={theme} title="Photography" path="/photography">
+  <Fragment slot="hero"><p class="eyebrow"><b>●</b>&nbsp; {photos.length ? `${photos.length} photos` : 'Aerial'}</p><h2 class="page-title">Photography</h2></Fragment>
+  <section class="block">
+    <div class="sec-h"><h2>From the air</h2><a href={site.contact.instagram} target="_blank" rel="noopener">{site.contact.instagramHandle} →</a></div>
+    <p class="intro">{site.photographyIntro}</p>
+    <Gallery />
+  </section>
+  <dialog class="lightbox" id="lightbox"><button type="button" class="close" aria-label="Close">×</button><img alt="" /><p></p></dialog>
+</Base>

@@ -1,0 +1,80 @@
+---
+// Shared page shell: <head>, animated header, footer, music button.
+// `hero="full"` is the homepage; `hero="slim"` is a shorter banner for inner pages.
+import '../styles/site.css';
+import { site, themeName, type Theme } from '../lib';
+
+interface Props { theme: Theme; title?: string; description?: string; hero?: 'full' | 'slim'; path?: string }
+const { theme, title, description, hero = 'slim', path = '' } = Astro.props;
+const other: Theme = theme === 's' ? 'r' : 's';
+const pageTitle = title ? `${title} · ${site.name}` : `${site.name} · Mechanical Engineer`;
+const desc = description ?? site.lede[theme];
+const base = `/${theme}`;
+const music = site.music ?? {};
+const external = (u: string) => /^https?:/.test(u);
+---
+<!doctype html>
+<html lang="en" data-theme={theme}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{pageTitle}</title>
+  <meta name="description" content={desc} />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={desc} />
+  <meta name="theme-color" content={theme === 's' ? '#080808' : '#0c0a09'} />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="canonical" href={`https://www.saahilmohal.com${base}${path}/`} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Archivo:wdth,wght@62..125,400..900&family=Hanken+Grotesk:wght@400;500;600&display=swap" />
+</head>
+<body>
+  <header class:list={['hero', { slim: hero === 'slim' }]}>
+    <canvas id="hero-canvas" data-kind={theme} aria-hidden="true"></canvas>
+    <div class="shade"></div>
+    <div class="wrap top">
+      <nav class="nav" aria-label="Main">
+        {theme === 's'
+          ? <a class="mark" href={`${base}/`}><i></i>SAAHIL MOHAL</a>
+          : <a class="mark" href={`${base}/`}>{site.name}</a>}
+        <ul>
+          <li><a href={`${base}/experience/`} aria-current={path.startsWith('/experience') ? 'page' : undefined}>Experience</a></li>
+          <li><a href={`${base}/projects/`} aria-current={path.startsWith('/projects') ? 'page' : undefined}>Projects</a></li>
+          <li class="opt"><a href={`${base}/photography/`} aria-current={path.startsWith('/photography') ? 'page' : undefined}>Photography</a></li>
+          {theme === 's' && <li class="opt"><a href={site.contact.resume} target="_blank" rel="noopener">Resume ↗</a></li>}
+        </ul>
+        {theme === 'r' && <a class="cta" href={site.contact.resume} target="_blank" rel="noopener">Resume</a>}
+      </nav>
+    </div>
+    <div class="wrap body"><slot name="hero" /></div>
+  </header>
+
+  <main class="wrap">
+    <slot />
+    <footer>
+      <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
+      <nav aria-label="Links">
+        <a href={site.contact.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+        <a href={site.contact.instagram} target="_blank" rel="noopener">Instagram</a>
+        <a href={site.contact.resume} target={external(site.contact.resume) ? '_blank' : undefined} rel="noopener">Resume</a>
+        <a href={`/${other}${path}/`}>View in {themeName[other]}</a>
+      </nav>
+    </footer>
+  </main>
+
+  {(music.file || music.youtube) && (
+    <button type="button" class="music" id="music" aria-pressed="false" data-file={music.file || ''} data-youtube={music.youtube || ''}>
+      <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="lbl">{music.label || 'Music'}</span>
+    </button>
+  )}
+
+  <script>
+    import { sonar } from '../scripts/hero-sonar';
+    import { hills } from '../scripts/hero-hills';
+    import { initPage } from '../scripts/page';
+    const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement;
+    initPage(canvas.dataset.kind === 's' ? sonar(canvas) : hills(canvas));
+  </script>
+</body>
+</html>

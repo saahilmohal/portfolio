@@ -1,0 +1,33 @@
+---
+import Base from '../../../components/Base.astro';
+import { getProjects, yearOf, THEMES, type Theme } from '../../../lib';
+import { render } from 'astro:content';
+export async function getStaticPaths() {
+  const all = await getProjects();
+  return THEMES.flatMap((theme) => all.map((entry, i) => ({ params: { theme, slug: entry.id }, props: { entry, next: all[(i + 1) % all.length] } })));
+}
+const theme = Astro.params.theme as Theme;
+const { entry, next } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+---
+<Base theme={theme} title={d.title} description={d.summary} path={`/projects/${entry.id}`}>
+  <Fragment slot="hero">
+    <p class="eyebrow"><a href={`/${theme}/projects/`}>← Projects</a></p>
+    <h2 class="page-title">{d.title}</h2>
+    {d.kind && <p class="lede">{d.kind}</p>}
+  </Fragment>
+  <article class="detail">
+    <aside class="facts">
+      <dl>
+        {d.date && <div><dt>Year</dt><dd>{yearOf(d.date)}</dd></div>}
+        {d.tags.length > 0 && <div><dt>Focus</dt><dd><ul class="tags">{d.tags.map((t) => <li>{t}</li>)}</ul></dd></div>}
+      </dl>
+    </aside>
+    <div class="prose">
+      <p class="summary">{d.summary}</p>
+      <Content />
+    </div>
+  </article>
+  {next.id !== entry.id && <a class="next" href={`/${theme}/projects/${next.id}/`}><span>Next</span>{next.data.title} →</a>}
+</Base>

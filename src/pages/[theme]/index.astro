@@ -1,0 +1,44 @@
+---
+import Base from '../../components/Base.astro';
+import Row from '../../components/Row.astro';
+import Gallery from '../../components/Gallery.astro';
+import { site, getExperience, getProjects, span, yearOf, themePaths, type Theme } from '../../lib';
+export const getStaticPaths = themePaths;
+const theme = Astro.params.theme as Theme;
+const experience = await getExperience();
+const projects = await getProjects();
+const typedName = theme === 'r' ? site.name.replace(' ', '\n') : site.name;
+---
+<Base theme={theme} hero="full">
+  <Fragment slot="hero">
+    <p class="eyebrow"><b>●</b>&nbsp; {site.eyebrow}</p>
+    <h1 aria-label={site.name}><span class="typed" data-text={typedName}>{typedName}</span><span class="caret" aria-hidden="true"></span></h1>
+    <p class="lede">{site.lede[theme]}</p>
+    <ul class="readout">{site.readout.map((r: { label: string; value: string }) => <li>{r.label}<b>{r.value}</b></li>)}</ul>
+  </Fragment>
+
+  <section class="block glance" aria-label="At a glance">
+    <div class="sec-h"><h2>At a glance</h2></div>
+    <ol>{site.glance.map((g: string, i: number) => <li class={i === 0 ? 'on' : ''}><small>{String(i + 1).padStart(2, '0')}</small><span>{g}</span></li>)}</ol>
+  </section>
+
+  <section class="block about">
+    <div class="sec-h"><h2>About</h2></div>
+    <p>{site.about}</p>
+  </section>
+
+  <section class="block">
+    <div class="sec-h"><h2>Experience</h2><a href={`/${theme}/experience/`}>All experience →</a></div>
+    {experience.map((e) => <Row href={`/${theme}/experience/${e.id}/`} when={span(e.data.start, e.data.end)} title={e.data.company} sub={e.data.role} summary={e.data.summary} tags={e.data.tags} />)}
+  </section>
+
+  <section class="block">
+    <div class="sec-h"><h2>Projects</h2><a href={`/${theme}/projects/`}>All projects →</a></div>
+    {projects.map((p) => <Row href={`/${theme}/projects/${p.id}/`} when={yearOf(p.data.date)} title={p.data.title} sub={p.data.kind} summary={p.data.summary} tags={p.data.tags} />)}
+  </section>
+
+  <section class="block">
+    <div class="sec-h"><h2>From the air</h2><a href={`/${theme}/photography/`}>All photos →</a></div>
+    <Gallery limit={4} />
+  </section>
+</Base>

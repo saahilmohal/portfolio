@@ -36,6 +36,18 @@ export function initPage(scene: Scene) {
   };
   if (!reduce && items.length) { addEventListener('scroll', glance, { passive: true }); glance(); }
 
+  // photo lightbox (Photography page)
+  const box = document.getElementById('lightbox') as HTMLDialogElement | null;
+  if (box) {
+    const img = box.querySelector('img')!, cap = box.querySelector('p')!;
+    document.querySelectorAll<HTMLElement>('.photos figure').forEach((fig) => fig.addEventListener('click', () => {
+      const src = fig.querySelector('img')!;
+      img.src = src.currentSrc || src.src; img.alt = src.alt; cap.textContent = fig.querySelector('figcaption')?.textContent ?? '';
+      box.showModal();
+    }));
+    box.addEventListener('click', () => box.close());
+  }
+
   // music
   const btn = document.getElementById('music') as HTMLButtonElement | null;
   if (!btn) return;

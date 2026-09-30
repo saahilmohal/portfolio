@@ -1,0 +1,14 @@
+---
+import Base from '../../../components/Base.astro';
+import Row from '../../../components/Row.astro';
+import { getProjects, yearOf, themePaths, type Theme } from '../../../lib';
+export const getStaticPaths = themePaths;
+const theme = Astro.params.theme as Theme;
+const projects = await getProjects();
+---
+<Base theme={theme} title="Projects" path="/projects">
+  <Fragment slot="hero"><p class="eyebrow"><b>●</b>&nbsp; {projects.length} projects</p><h2 class="page-title">Projects</h2></Fragment>
+  <section class="block">
+    {projects.map((p) => <Row href={`/${theme}/projects/${p.id}/`} when={yearOf(p.data.date)} title={p.data.title} sub={p.data.kind} summary={p.data.summary} tags={p.data.tags} />)}
+  </section>
+</Base>
