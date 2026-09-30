@@ -1,6 +1,6 @@
 ---
 title: "Eagle Scout Project"
-kind: "Community seating area and Little Library"
+kind: "BSA Troop 1159 · Former Senior Patrol Leader"
 label: "Scouts"
 order: 8
 summary: "Planned, fundraised, and led volunteers to build a bench and Little Library at the Potomac Station pool and clubhouse."
@@ -19,6 +19,10 @@ Planned, developed, and led a team to design and build a community seating area 
 - **Leadership:** delegated tasks and coordinated volunteers to use time and resources efficiently.
 - **Fundraising and budget:** secured monetary and material donations, built the budget, and managed costs.
 - **Build:** worked hands-on with impact drivers, post-hole diggers, and shovels; selected concrete anchors, plants, and mulch.
+
+## Scouting
+
+Earned Eagle Scout with BSA Troop 1159 (August 2016 – December 2022), where I served as Senior Patrol Leader.
 
 ## Result
 

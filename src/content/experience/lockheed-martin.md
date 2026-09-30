@@ -5,7 +5,7 @@ location: "Orlando, FL"
 start: 2025-06
 end: 2025-08
 summary: "Interned across Rotary & Mission Systems and Missiles & Fire Control on the F-35 program. Built a computer-vision pipeline that qualified a new EOTS frame material at 78% lower unit cost."
-tags: ["Python", "Computer vision", "MATLAB", "F-35"]
+tags: ["Python", "Computer vision", "MATLAB", "Machine learning"]
 ---
 <!--
   ✏️  The "summary" above shows on the homepage and the list page.
@@ -23,7 +23,7 @@ Interned across two divisions, Rotary and Mission Systems (RMS) and Missiles and
 
 ## Machine learning for pilot selection
 
-Helped architect a project to identify pilots suited for an accelerated fighter pilot training stream. Defined the data parameters and interviewed veteran instructor pilots.
+Proposed an ML classification system for military pilot training, aimed at identifying pilots suited for an accelerated fighter pilot training stream. Designed custom simulation environments for automated specialization-track assignment, defined the data parameters, and interviewed veteran instructor pilots.
 
 ## Integrated Learning Environment
 

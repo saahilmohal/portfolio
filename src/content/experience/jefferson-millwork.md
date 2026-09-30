@@ -1,9 +1,9 @@
 ---
 company: "Jefferson Millwork & Design"
 role: "Architectural Drafting Intern"
-location: "Sterling, VA"
-label: "Summer 2022"
-start: 2022-06   # only used for ordering; the label above is what shows
+location: "Leesburg, VA"
+start: 2022-06
+end: 2022-08
 summary: "Produced 76 construction and renovation drawings for federal projects, including the U.S. Cannon House and the FERC renovation in Washington, D.C."
 tags: ["Drafting", "Construction drawings"]
 ---

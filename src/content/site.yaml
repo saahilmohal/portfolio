@@ -19,7 +19,7 @@ readout:
   - label: "GPA"
     value: "3.90"
   - label: "Internships"
-    value: "3"
+    value: "4"
   - label: "Base"
     value: "Atlanta / D.C."
   - label: "Status"
@@ -27,17 +27,21 @@ readout:
 
 # "At a glance" lines — keep each one short.
 glance:
-  - "3 defense internships"
+  - "4 internships"
   - "Underwater satcom"
   - "F-35 computer vision"
-  - "HV power systems"
-  - "B.S. + M.S. by 2027"
+  - "HV power distribution"
+  - "B.S. + M.S. in 4 years"
 
 about: >-
-  I'm finishing an accelerated B.S. and M.S. in Mechanical Engineering at Georgia Tech,
-  with a focus on AI/ML applications. Outside of class I'm Technology Director for the
-  Interfraternity Council, a former ElectrifyGT project lead, an Eagle Scout, a pianist,
-  and a drone photographer. I spent Spring 2026 studying at Universidad Carlos III de Madrid.
+  I'm finishing a B.S. and M.S. in Mechanical Engineering at Georgia Tech in four years,
+  with a 3.90 GPA, Faculty Honors (3x), and Dean's List (2x). I'm the Technology Director
+  for the Interfraternity Council, after serving as its VP of Communications, and I sit on
+  the Woodruff School Student Advisory Council and the Executive Roundtable. I've also been a
+  Project Lead for ElectrifyGT and served on Delta Chi's Judicial Board and as its
+  Scholarship & Professional Development Chair. Outside engineering I'm an Eagle Scout and
+  former Senior Patrol Leader of Troop 1159, a pianist, and a drone photographer. I spent
+  Spring 2026 studying at Universidad Carlos III de Madrid.
 
 contact:
   email: "saahil.mohal@gatech.edu"

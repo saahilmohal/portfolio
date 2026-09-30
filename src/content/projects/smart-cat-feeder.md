@@ -1,6 +1,6 @@
 ---
 title: "Smart Cat Feeder"
-kind: "Full-stack mechatronics design"
+kind: "IoT automated pet feeding system"
 label: "Personal"
 order: 1
 date: 2025-08
