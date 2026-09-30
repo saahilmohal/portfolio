@@ -7,12 +7,12 @@
 defaultTheme: "r"
 
 name: "Saahil Mohal"
-eyebrow: "Mechanical Engineer · Georgia Tech · B.S./M.S. ’27"
+eyebrow: "Georgia Tech · B.S./M.S. ’27"
 
 # The sentence under your name. Each theme can have its own.
 lede:
-  s: "I design electro-mechanical hardware for vehicles that operate underwater, at the surface, and in the air."
-  r: "Mechanical engineer at Georgia Tech. I build hardware for vehicles, and shoot aerial photography with a drone."
+  s: "Mechanical Engineer @ Georgia Tech. I build electrical and mechanical hardware for vehicles, and shoot aerial photography with a drone."
+  r: "Mechanical Engineer @ Georgia Tech. I build electrical and mechanical hardware for vehicles, and shoot aerial photography with a drone."
 
 # The small stat line under the hero. Add or remove lines freely.
 readout:
@@ -33,14 +33,28 @@ glance:
   - "HV power distribution"
   - "B.S. + M.S. in 4 years"
 
-about: >-
-  I'm finishing a B.S. and M.S. in Mechanical Engineering at Georgia Tech in four years,
-  with a 3.90 GPA, Faculty Honors (3x), and Dean's List (2x). I'm the Technology Director
-  for the Interfraternity Council, after serving as its VP of Communications, and I sit on
-  the Woodruff School Student Advisory Council. I've also been a Project Lead for ElectrifyGT
-  and served on Delta Chi's Judicial Board and as its Scholarship Chair. Outside engineering I'm an Eagle Scout and
-  former Senior Patrol Leader of Troop 1159, a pianist, and a drone photographer. I spent
-  Spring 2026 studying at Universidad Carlos III de Madrid.
+# About section on the homepage: an education line, then two columns, then a personal note.
+about:
+  education: >-
+    I'm a Mechanical Engineering student at Georgia Tech, finishing my B.S. and M.S. together
+    in four years with a focus on AI/ML applications. I also spent Spring 2026 studying abroad
+    at Universidad Carlos III de Madrid in Spain.
+  professional: >-
+    Most recently I was an Electro-Mechanical Integration Intern at Odin Dynamics in Los Angeles,
+    working on an unmanned underwater vehicle: its Starlink communications module, a thruster
+    test rig, the high-voltage power board, and the surface antenna system. Before that I interned
+    at Lockheed Martin in Orlando on the F-35 program, at CACI International in its National
+    Security & Innovative Solutions division, and at Jefferson Millwork & Design as an architectural
+    drafter. Along the way I've gotten to work on RF and structures, CFD, test rigs, computer vision,
+    and machine learning.
+  leadership: >-
+    I'm the Technology Director for Georgia Tech's Interfraternity Council, where I look after
+    digital infrastructure and technical operations, and before that I was its VP of Communications.
+    I'm also on the Woodruff School Student Advisory Council and the Executive Roundtable. I was a
+    Project Lead for ElectrifyGT, running projects to cut campus carbon emissions, and I've served
+    Delta Chi on its Judicial Board and as Scholarship & Professional Development Chair.
+  personal: >-
+    Outside of engineering, I'm an Eagle Scout, a pianist, and an avid drone photographer.
 
 contact:
   email: "saahil.mohal@gatech.edu"

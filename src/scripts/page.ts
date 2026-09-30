@@ -28,11 +28,17 @@ export function initPage(scene: Scene) {
 
   // at a glance: the line closest to the middle of the screen lights up
   const items = [...document.querySelectorAll<HTMLElement>('.glance li')];
+  // hovering a line highlights that one; otherwise the highlight follows scroll
+  let hovered = -1;
+  const light = (k: number) => items.forEach((li, i) => li.classList.toggle('on', i === k));
+  items.forEach((li, i) => li.addEventListener('mouseenter', () => { hovered = i; light(i); }));
+  items[0]?.parentElement?.addEventListener('mouseleave', () => { hovered = -1; glance(); });
   const glance = () => {
+    if (hovered >= 0) return;
     const mid = innerHeight / 2;
     let best = 0, bestD = Infinity;
     items.forEach((li, i) => { const r = li.getBoundingClientRect(); const d = Math.abs(r.top + r.height / 2 - mid); if (d < bestD) { bestD = d; best = i; } });
-    items.forEach((li, i) => li.classList.toggle('on', i === best));
+    light(best);
   };
   if (!reduce && items.length) { addEventListener('scroll', glance, { passive: true }); glance(); }
 

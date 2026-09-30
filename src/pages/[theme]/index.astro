@@ -24,7 +24,12 @@ const typedName = theme === 'r' ? site.name.replace(' ', '\n') : site.name;
 
   <section class="block about">
     <div class="sec-h"><h2>About</h2></div>
-    <p>{site.about}</p>
+    <p class="about-lead">{site.about.education}</p>
+    <div class="about-cols">
+      <div><h3>Professional</h3><p>{site.about.professional}</p></div>
+      <div><h3>Leadership &amp; service</h3><p>{site.about.leadership}</p></div>
+    </div>
+    {site.about.personal && <p class="about-note">{site.about.personal}</p>}
   </section>
 
   <section class="block">
