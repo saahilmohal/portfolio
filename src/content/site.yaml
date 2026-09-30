@@ -62,6 +62,11 @@ contact:
   instagramHandle: "@saahils.snaps"
   resume: "https://saahilmohal.com/resume-redirect"   # Cloudflare page rule points this at your Google Doc
 
+# Photo order in the galleries:
+#   "date"   = newest first, using the date the photo was taken (from the photo's metadata)
+#   "random" = shuffled every time the page loads
+photoOrder: "date"
+
 # Text at the top of the Photography page.
 photographyIntro: >-
   Aerial photography from wherever I happen to be flying. More on Instagram.

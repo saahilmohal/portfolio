@@ -15,6 +15,7 @@ Both themes (`/s` Sonar and `/r` Rolling Hills) update together.
 | Reorder projects / hide a job from the homepage | Projects: change `order:` (1 shows first). Jobs: add `home: false` |
 | Write more about a job or project  | Open its file and write below the `---` lines. That text appears on its own page. |
 | Add pictures to a job/project page | Put the image in `public/images/`, then write `![caption](/images/name.jpg)` in the file |
+| Change photo order                 | In `site.yaml`, set `photoOrder: "date"` (newest first, from the photo's metadata) or `"random"` (shuffled on every visit) |
 | Update my resume                   | Update the Google Doc. The site links to saahilmohal.com/resume-redirect, a Cloudflare page rule |
 | Use my own music file              | Put an .mp3 in `public/music/`, then set `music.file: "/music/name.mp3"` in `site.yaml` |
 

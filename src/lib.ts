@@ -24,14 +24,35 @@ const monthYear = (s?: string) => {
 };
 export const dateRange = (a: string, b?: string) => `${monthYear(a)} – ${monthYear(b)}`;
 
-// Every image in src/photos/ becomes a gallery tile, newest filename first.
+// Every image in src/photos/ becomes a gallery tile.
+// "Taken" date comes from the photo's EXIF metadata; if a photo has none, a date at the
+// start of the file name (e.g. 2026-05-madrid.jpg) is used, and otherwise it sorts last.
+import exifr from 'exifr';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
 const photoFiles = import.meta.glob<{ default: ImageMetadata }>('./photos/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}', { eager: true });
-export const photos = Object.entries(photoFiles)
-  .sort(([a], [b]) => b.localeCompare(a))
-  .map(([path, mod]) => {
-    const file = path.split('/').pop()!.replace(/\.[^.]+$/, '');
-    const caption = file.replace(/^\d{4}(-\d{2})?(-\d{2})?-?/, '').replace(/[-_]+/g, ' ').trim();
-    return { src: mod.default, caption };
-  });
+const nameDate = (file: string) => {
+  const m = file.match(/^(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?/);
+  return m ? new Date(+m[1], (+(m[2] ?? 1)) - 1, +(m[3] ?? 1)).getTime() : 0;
+};
+const captionOf = (file: string) => file.replace(/^\d{4}(-\d{2})?(-\d{2})?-?/, '').replace(/[-_]+/g, ' ').trim();
+
+export const photos = await Promise.all(
+  Object.entries(photoFiles).map(async ([path, mod]) => {
+    const fileName = path.split('/').pop()!;
+    const base = fileName.replace(/\.[^.]+$/, '');
+    let taken = 0;
+    try {
+      const exif = await exifr.parse(readFileSync(join(process.cwd(), 'src', 'photos', fileName)), ['DateTimeOriginal', 'CreateDate']);
+      const d = exif?.DateTimeOriginal ?? exif?.CreateDate;
+      if (d instanceof Date && !isNaN(+d)) taken = d.getTime();
+    } catch {}
+    if (!taken) taken = nameDate(base);
+    return { src: mod.default, caption: captionOf(base), taken, file: base };
+  }),
+).then((list) => list.sort((a, b) => b.taken - a.taken || a.file.localeCompare(b.file)));
+
+export const photoOrder: 'date' | 'random' = site.photoOrder === 'random' ? 'random' : 'date';
 
 export const themePaths = () => THEMES.map((theme) => ({ params: { theme } }));

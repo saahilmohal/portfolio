@@ -42,6 +42,14 @@ export function initPage(scene: Scene) {
   };
   if (!reduce && items.length) { addEventListener('scroll', glance, { passive: true }); glance(); }
 
+  // random photo order: shuffle on every visit
+  document.querySelectorAll<HTMLElement>('.photos[data-order="random"]').forEach((grid) => {
+    const figs = [...grid.children] as HTMLElement[];
+    for (let i = figs.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [figs[i], figs[j]] = [figs[j], figs[i]]; }
+    const limit = +(grid.dataset.limit || 0);
+    figs.forEach((f, i) => { f.hidden = !!limit && i >= limit; grid.appendChild(f); });
+  });
+
   // photo lightbox (Photography page)
   const box = document.getElementById('lightbox') as HTMLDialogElement | null;
   if (box) {
