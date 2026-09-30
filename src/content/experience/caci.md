@@ -4,17 +4,29 @@ role: "Mechanical Engineering Intern · NSIS"
 location: "Sterling, VA"
 start: 2024-05
 end: 2024-08
-summary: "Designed and prototyped a field-ready GPS antenna characterization device, with conjugate heat transfer analysis."
-tags: ["Prototyping", "Thermal"]
+summary: "Designed a field-ready GPS antenna testing module, tested a phased array antenna, and built LVDS test fixtures with custom tooling that sped up assembly by over 30%."
+tags: ["SolidWorks", "Prototyping", "Thermal", "RF testing"]
 ---
-
 <!--
-  ✏️  Write as much as you want below. Everything here shows on this job's own page.
-  Ideas: the problem, what you owned, how you approached it, results, what you learned.
+  ✏️  The "summary" above shows on the homepage and the list page.
+  Everything below shows only on this entry's own page. Write as much as you want.
   Add a photo: put it in public/images/ and write  ![caption](/images/your-photo.jpg)
 -->
 
-## Highlights
+Hands-on experience spanning design, assembly, and testing in the National Security & Innovative Solutions division.
 
-- Designed and prototyped a field-ready GPS antenna characterization device on a precision-machined PCB substrate.
-- Ran conjugate heat transfer analyses and managed BOM procurement.
+## GPS antenna testing module
+
+Owned the design process for a field-ready GPS antenna characterization device: CAD modeling, a custom-milled PCB baseplate, conjugate heat transfer analysis, the cooling system, and BOM sourcing.
+
+## Phased array antenna
+
+Collaborated on assembly and testing. Ran radiation pattern and gain tests using Python scripts, and mounted the antenna on a positioner for the Customer Factory Acceptance Test.
+
+## LVDS converter test fixtures
+
+Created assembly drawings, sourced and assembled parts, and wired PCBs. Designed custom tools, including torque wrenches for connectors, that increased assembly efficiency by over 30%.
+
+## GPS interference detector enclosure
+
+Designed and fabricated the enclosure, machined its PCB baseplate, and integrated LEDs and connectors.

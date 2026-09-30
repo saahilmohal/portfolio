@@ -5,8 +5,8 @@ import Gallery from '../../components/Gallery.astro';
 import { site, getExperience, getProjects, span, yearOf, themePaths, type Theme } from '../../lib';
 export const getStaticPaths = themePaths;
 const theme = Astro.params.theme as Theme;
-const experience = await getExperience();
-const projects = await getProjects();
+const experience = (await getExperience()).filter((e) => e.data.home);
+const projects = (await getProjects()).slice(0, 4);
 const typedName = theme === 'r' ? site.name.replace(' ', '\n') : site.name;
 ---
 <Base theme={theme} hero="full">
@@ -29,12 +29,12 @@ const typedName = theme === 'r' ? site.name.replace(' ', '\n') : site.name;
 
   <section class="block">
     <div class="sec-h"><h2>Experience</h2><a href={`/${theme}/experience/`}>All experience →</a></div>
-    {experience.map((e) => <Row href={`/${theme}/experience/${e.id}/`} when={span(e.data.start, e.data.end)} title={e.data.company} sub={e.data.role} summary={e.data.summary} tags={e.data.tags} />)}
+    {experience.map((e) => <Row href={`/${theme}/experience/${e.id}/`} when={e.data.label ?? span(e.data.start, e.data.end)} title={e.data.company} sub={e.data.role} summary={e.data.summary} tags={e.data.tags} />)}
   </section>
 
   <section class="block">
     <div class="sec-h"><h2>Projects</h2><a href={`/${theme}/projects/`}>All projects →</a></div>
-    {projects.map((p) => <Row href={`/${theme}/projects/${p.id}/`} when={yearOf(p.data.date)} title={p.data.title} sub={p.data.kind} summary={p.data.summary} tags={p.data.tags} />)}
+    {projects.map((p) => <Row href={`/${theme}/projects/${p.id}/`} when={p.data.label ?? yearOf(p.data.date)} title={p.data.title} sub={p.data.kind} summary={p.data.summary} tags={p.data.tags} />)}
   </section>
 
   <section class="block">

@@ -11,7 +11,7 @@ export const themeName: Record<Theme, string> = { s: 'Sonar', r: 'Rolling Hills'
 export const getExperience = async () =>
   (await getCollection('experience')).sort((a, b) => b.data.start.localeCompare(a.data.start));
 export const getProjects = async () =>
-  (await getCollection('projects')).sort((a, b) => (b.data.date ?? '').localeCompare(a.data.date ?? ''));
+  (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 
 const year = (s?: string) => (s ? s.slice(0, 4) : 'Now');
 export const span = (a: string, b?: string) => (year(a) === year(b) ? year(a) : `${year(a)}–${year(b)}`);

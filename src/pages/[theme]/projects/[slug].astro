@@ -20,7 +20,8 @@ const d = entry.data;
   <article class="detail">
     <aside class="facts">
       <dl>
-        {d.date && <div><dt>Year</dt><dd>{yearOf(d.date)}</dd></div>}
+        {d.label && <div><dt>Type</dt><dd>{d.label}</dd></div>}
+        {d.date && <div><dt>Started</dt><dd>{yearOf(d.date)}</dd></div>}
         {d.tags.length > 0 && <div><dt>Focus</dt><dd><ul class="tags">{d.tags.map((t) => <li>{t}</li>)}</ul></dd></div>}
       </dl>
     </aside>

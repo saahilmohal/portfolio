@@ -9,6 +9,8 @@ const experience = defineCollection({
     company: z.string(),
     role: z.string(),
     location: z.string().optional(),
+    label: z.string().optional(),   // shown instead of dates when filled in
+    home: z.boolean().default(true), // false = hide from the homepage
     start: z.coerce.string(),      // "2026-06"
     end: z.coerce.string().optional(), // leave out if current
     summary: z.string(),
@@ -22,6 +24,8 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     kind: z.string().optional(),
+    label: z.string().optional(),   // short tag on the left, e.g. "Course"
+    order: z.number().default(99),  // lower numbers show first
     date: z.coerce.string().optional(),
     summary: z.string(),
     tags: z.array(z.string()).default([]),

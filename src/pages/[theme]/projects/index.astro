@@ -9,6 +9,6 @@ const projects = await getProjects();
 <Base theme={theme} title="Projects" path="/projects">
   <Fragment slot="hero"><p class="eyebrow"><b>●</b>&nbsp; {projects.length} projects</p><h2 class="page-title">Projects</h2></Fragment>
   <section class="block">
-    {projects.map((p) => <Row href={`/${theme}/projects/${p.id}/`} when={yearOf(p.data.date)} title={p.data.title} sub={p.data.kind} summary={p.data.summary} tags={p.data.tags} />)}
+    {projects.map((p) => <Row href={`/${theme}/projects/${p.id}/`} when={p.data.label ?? yearOf(p.data.date)} title={p.data.title} sub={p.data.kind} summary={p.data.summary} tags={p.data.tags} />)}
   </section>
 </Base>

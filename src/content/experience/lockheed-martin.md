@@ -4,17 +4,31 @@ role: "Mechanical Engineering Intern · RMS + MFC"
 location: "Orlando, FL"
 start: 2025-06
 end: 2025-08
-summary: "Built a computer-vision pipeline to measure coating delamination in rain-erosion tests, qualifying a new F-35 EOTS frame material at 78% lower unit cost."
-tags: ["Python", "OpenCV", "Materials"]
+summary: "Interned across Rotary & Mission Systems and Missiles & Fire Control on the F-35 program. Built a computer-vision pipeline that qualified a new EOTS frame material at 78% lower unit cost."
+tags: ["Python", "Computer vision", "MATLAB", "F-35"]
 ---
-
 <!--
-  ✏️  Write as much as you want below. Everything here shows on this job's own page.
-  Ideas: the problem, what you owned, how you approached it, results, what you learned.
+  ✏️  The "summary" above shows on the homepage and the list page.
+  Everything below shows only on this entry's own page. Write as much as you want.
   Add a photo: put it in public/images/ and write  ![caption](/images/your-photo.jpg)
 -->
 
-## Highlights
+Interned across two divisions, Rotary and Mission Systems (RMS) and Missiles and Fire Control (MFC), contributing to the F-35 program.
 
-- Engineered a Python computer vision pipeline using color segmentation to quantify coating delamination during high-velocity rain erosion testing.
-- Used the data to qualify a new F-35 EOTS frame material, cutting unit cost 78% (>$70k/yr savings) while maintaining RCS compliance.
+## EOTS window frame material
+
+- Analyzed material exposure test data from an Air Force research facility, writing scripts to analyze video footage of material degradation during high-velocity rain erosion testing.
+- Built a Python computer-vision pipeline using color segmentation to quantify coating delamination, and used MATLAB to evaluate performance.
+- Used the results to qualify a new F-35 EOTS frame material, cutting unit cost by 78% (over $70,000 in annual savings) while maintaining RCS compliance.
+
+## Machine learning for pilot selection
+
+Helped architect a project to identify pilots suited for an accelerated fighter pilot training stream. Defined the data parameters and interviewed veteran instructor pilots.
+
+## Integrated Learning Environment
+
+Validated the web architecture's ability to consolidate simulator telemetry for the Royal Australian Air Force (RAAF). [Read the Lockheed Martin feature](https://www.lockheedmartin.com/en-us/news/features/2025/redefining-modeling-and-simulation-for-the-military.html).
+
+## Promotional video
+
+Cast as a student pilot in a promotional video filmed at the Sikorsky Training Academy with Black Hawk helicopter assets.

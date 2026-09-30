@@ -9,7 +9,7 @@ const experience = await getExperience();
 <Base theme={theme} title="Experience" path="/experience">
   <Fragment slot="hero"><p class="eyebrow"><b>●</b>&nbsp; {experience.length} roles</p><h2 class="page-title">Experience</h2></Fragment>
   <section class="block">
-    {experience.map((e) => <Row href={`/${theme}/experience/${e.id}/`} when={span(e.data.start, e.data.end)} title={e.data.company} sub={e.data.role} summary={e.data.summary} tags={e.data.tags} />)}
+    {experience.map((e) => <Row href={`/${theme}/experience/${e.id}/`} when={e.data.label ?? span(e.data.start, e.data.end)} title={e.data.company} sub={e.data.role} summary={e.data.summary} tags={e.data.tags} />)}
     <p class="aside">Full details on my <a href={site.contact.resume} target="_blank" rel="noopener">resume</a>.</p>
   </section>
 </Base>
