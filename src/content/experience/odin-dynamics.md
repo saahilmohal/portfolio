@@ -3,7 +3,8 @@ company: "Odin Dynamics"
 role: "Electro-Mechanical Integration Intern"
 location: "Los Angeles, CA"
 start: 2026-06
-summary: "Conceived and lead the Ku-band (Starlink) satcom subsystem for an unmanned underwater vehicle, built a 2,500 N thruster dynamometer, and designed the vehicle's HV power distribution and RF front end."
+end: 2026-08
+summary: "Conceived and led the Ku-band (Starlink) satcom subsystem for an unmanned underwater vehicle, built a 2,500 N thruster dynamometer, and designed the vehicle's HV power distribution and RF front end."
 tags: ["RF modeling", "Structures", "HV power", "Test rigs"]
 ---
 <!--
@@ -14,7 +15,7 @@ tags: ["RF modeling", "Structures", "HV power", "Test rigs"]
 
 ## Satcom subsystem for a UUV
 
-Conceived and lead the end-to-end design of a deployable Ku-band satellite-communications (Starlink) subsystem for an unmanned underwater vehicle, owning requirements and MIL-STD selection.
+Conceived and led the end-to-end design of a deployable Ku-band satellite-communications (Starlink) subsystem for an unmanned underwater vehicle, owning requirements and MIL-STD selection.
 
 - Authored Python RF models optimizing a fused-quartz radome composite layup to under 0.3 dB insertion loss across ±55° scan.
 - Re-architected a flat window that was failing at 300 m depth (10–30× allowable stress) into a streamlined curved membrane-compression geometry with a factor of safety above 8.
@@ -37,7 +38,7 @@ Led the field campaign qualifying Starlink for submerged maritime use.
 
 ## HV power distribution
 
-Architecting a kW-scale floating-HV power distribution board converting a 108–151 V battery pack to an isolated 48 V bus with point-of-load rails (~16× lower distribution loss), EV-grade pre-charge and contactor protection with BMS-gated fail-safe sequencing, and per-rail eFuse telemetry to an NVIDIA Jetson over isolated CAN.
+Architected a kW-scale floating-HV power distribution board converting a 108–151 V battery pack to an isolated 48 V bus with point-of-load rails (~16× lower distribution loss), EV-grade pre-charge and contactor protection with BMS-gated fail-safe sequencing, and per-rail eFuse telemetry to an NVIDIA Jetson over isolated CAN.
 
 ## RF front end
 
