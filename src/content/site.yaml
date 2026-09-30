@@ -71,6 +71,6 @@ photographyIntro: >-
 #   youtube: the video ID from a YouTube link (shows a small player in the corner)
 # If "file" is filled in, it wins.
 music:
-  label: "Music while you scroll"
-  file: ""
-  youtube: "edDS8aLpyhA"
+  label: "What I've been listening to lately"
+  file: "/music/portfolio-song.mp3"
+  youtube: ""
