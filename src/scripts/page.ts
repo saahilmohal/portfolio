@@ -60,11 +60,15 @@ export function initPage(scene: Scene): () => void {
   const box = document.getElementById('lightbox') as HTMLDialogElement | null;
   if (box) {
     const img = box.querySelector('img')!, cap = box.querySelector('p')!;
-    document.querySelectorAll<HTMLElement>('.photos figure').forEach((fig) => fig.addEventListener('click', () => {
-      const src = fig.querySelector('img')!;
-      img.src = src.currentSrc || src.src; img.alt = src.alt; cap.textContent = fig.querySelector('figcaption')?.textContent ?? '';
-      box.showModal();
-    }));
+    const largest = (el: HTMLImageElement) => {
+      const best = (el.srcset || '').split(',').map((s) => s.trim().split(/\s+/)).filter((x) => x[0])
+        .sort((a, b) => parseInt(b[1] || '0') - parseInt(a[1] || '0'))[0];
+      return best?.[0] || el.currentSrc || el.src;
+    };
+    const open = (el: HTMLImageElement, caption: string) => { img.src = largest(el); img.alt = el.alt; cap.textContent = caption; box.showModal(); };
+    document.querySelectorAll<HTMLElement>('.photos figure').forEach((fig) => fig.addEventListener('click', () =>
+      open(fig.querySelector('img')!, fig.querySelector('figcaption')?.textContent ?? '')));
+    document.querySelectorAll<HTMLImageElement>('.prose img').forEach((el) => el.addEventListener('click', () => open(el, el.alt)));
     box.addEventListener('click', () => box.close());
   }
 

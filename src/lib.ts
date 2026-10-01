@@ -56,4 +56,18 @@ export const photos = await Promise.all(
 
 export const photoOrder: 'date' | 'random' = site.photoOrder === 'random' ? 'random' : 'date';
 
+// Photos for one job or project live in a folder named like its file, next to it:
+//   src/content/experience/odin-dynamics.md  →  src/content/experience/odin-dynamics/*.jpg
+// They show as a gallery on that entry's page, in file-name order (prefix 01-, 02- to control order).
+const entryFiles = import.meta.glob<{ default: ImageMetadata }>('./content/{experience,projects}/*/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}', { eager: true });
+export const entryPhotos = (collection: 'experience' | 'projects', slug: string) =>
+  Object.entries(entryFiles)
+    .filter(([path]) => path.startsWith(`./content/${collection}/${slug}/`))
+    .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+    .map(([path, mod]) => {
+      const base = path.split('/').pop()!.replace(/\.[^.]+$/, '');
+      const caption = base.replace(/^\d+[-_ ]+/, '').replace(/\s*\(\d+\)\s*$/, '').replace(/[-_]+/g, ' ').trim();
+      return { src: mod.default, caption };
+    });
+
 export const themePaths = () => THEMES.map((theme) => ({ params: { theme } }));

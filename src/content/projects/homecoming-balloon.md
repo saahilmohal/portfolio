@@ -9,7 +9,10 @@ tags: ["Arduino", "3D printing", "Machine design"]
 <!--
   ✏️  The "summary" above shows on the homepage and the list page.
   Everything below shows only on this entry's own page. Write as much as you want.
-  Add a photo: put it in public/images/ and write  ![caption](/images/your-photo.jpg)
+  Photos: make a folder next to this file with the same name (e.g. odin-dynamics/) and drop
+  images in it. They appear as a gallery at the bottom of this page, resized automatically.
+  The file name becomes the caption (01-radome-test.jpg → "radome test"; the number sets order).
+  To place one inside the text instead, write:  ![caption](./folder-name/photo.jpg)
 -->
 
 Built for Georgia Tech Delta Chi's "Wizard of Oz" Homecoming display in a 4-day sprint (about 40 hours). The system animated a large chicken-wire hot air balloon so it traveled autonomously across the house façade, on a custom support structure that couldn't modify the building.

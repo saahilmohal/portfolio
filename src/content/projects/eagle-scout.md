@@ -9,7 +9,10 @@ tags: ["Leadership", "Fundraising", "Construction"]
 <!--
   ✏️  The "summary" above shows on the homepage and the list page.
   Everything below shows only on this entry's own page. Write as much as you want.
-  Add a photo: put it in public/images/ and write  ![caption](/images/your-photo.jpg)
+  Photos: make a folder next to this file with the same name (e.g. odin-dynamics/) and drop
+  images in it. They appear as a gallery at the bottom of this page, resized automatically.
+  The file name becomes the caption (01-radome-test.jpg → "radome test"; the number sets order).
+  To place one inside the text instead, write:  ![caption](./folder-name/photo.jpg)
 -->
 
 Planned, developed, and led a team to design and build a community seating area with a bench and a Little Library in front of the Potomac Station pool and clubhouse. The project covered site preparation, material acquisition, and a layout that met HOA standards and community needs.

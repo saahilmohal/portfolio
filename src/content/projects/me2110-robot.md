@@ -9,7 +9,10 @@ tags: ["SolidWorks", "Laser cutting", "3D printing", "Design methods"]
 <!--
   ✏️  The "summary" above shows on the homepage and the list page.
   Everything below shows only on this entry's own page. Write as much as you want.
-  Add a photo: put it in public/images/ and write  ![caption](/images/your-photo.jpg)
+  Photos: make a folder next to this file with the same name (e.g. odin-dynamics/) and drop
+  images in it. They appear as a gallery at the bottom of this page, resized automatically.
+  The file name becomes the caption (01-radome-test.jpg → "radome test"; the number sets order).
+  To place one inside the text instead, write:  ![caption](./folder-name/photo.jpg)
 -->
 
 A Georgia Tech robotics competition project on a three-person team. As lead CAD designer, I turned early concepts into a working mechanical system that had to complete several tasks under strict constraints.

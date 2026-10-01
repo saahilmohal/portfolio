@@ -65,6 +65,8 @@ const external = (u: string) => /^https?:/.test(u);
     </footer>
   </main>
 
+  <dialog class="lightbox" id="lightbox"><button type="button" class="close" aria-label="Close">×</button><img alt="" /><p></p></dialog>
+
   {(music.file || music.youtube) && (
     <button type="button" class="music" id="music" transition:persist="music" aria-pressed="false" data-file={music.file || ''} data-youtube={music.youtube || ''}>
       <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="lbl">{music.label || 'Music'}</span>

@@ -115,6 +115,15 @@ footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
 .next span { font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--mute); }
 .next:hover { color: var(--acc); }
 
+/* photos on a job/project page */
+.entry-photos { margin-top: 48px; }
+.entry-photos h2 { margin-top: 0; }
+.entry-photos .photos { grid-template-columns: repeat(3, 1fr); }
+.entry-photos .photos.few { grid-template-columns: repeat(2, 1fr); }
+.entry-photos .photos figure { aspect-ratio: 4/3; }
+.prose img { cursor: zoom-in; }
+.prose .photos img { margin: 0; border-radius: 0; }
+
 /* lightbox */
 .photos figure { cursor: zoom-in; }
 .lightbox { border: 0; padding: 0; background: transparent; max-width: min(92vw, 1400px); max-height: 92vh; color: var(--fg); }
@@ -154,7 +163,7 @@ footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
 @media (max-width: 760px) {
   .row, .detail, .about-cols { grid-template-columns: 1fr; }
   .facts dl { position: static; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
-  .photos { grid-template-columns: repeat(2, 1fr); }
+  .photos, .entry-photos .photos { grid-template-columns: repeat(2, 1fr); }
   .nav ul li.opt { display: none; }
   .yt { width: 200px; }
 }

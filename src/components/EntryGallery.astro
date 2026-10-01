@@ -1,0 +1,13 @@
+---
+import { Image } from 'astro:assets';
+interface Props { photos: { src: ImageMetadata; caption: string }[] }
+const { photos } = Astro.props;
+---
+{photos.length > 0 && (
+  <section class="entry-photos">
+    <h2>Photos</h2>
+    <div class:list={['photos', { few: photos.length < 3 }]}>{photos.map((p) => (
+      <figure><Image src={p.src} alt={p.caption || 'Project photo'} widths={[400, 800, 1600]} sizes="(max-width: 760px) 50vw, 33vw" loading="lazy" />{p.caption && <figcaption>{p.caption}</figcaption>}</figure>
+    ))}</div>
+  </section>
+)}

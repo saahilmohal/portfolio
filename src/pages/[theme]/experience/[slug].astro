@@ -1,6 +1,7 @@
 ---
 import Base from '../../../components/Base.astro';
-import { getExperience, dateRange, THEMES, type Theme } from '../../../lib';
+import EntryGallery from '../../../components/EntryGallery.astro';
+import { getExperience, dateRange, entryPhotos, THEMES, type Theme } from '../../../lib';
 import { render } from 'astro:content';
 export async function getStaticPaths() {
   const all = await getExperience();
@@ -10,6 +11,7 @@ const theme = Astro.params.theme as Theme;
 const { entry, next } = Astro.props;
 const { Content } = await render(entry);
 const d = entry.data;
+const gallery = entryPhotos('experience', entry.id);
 ---
 <Base theme={theme} title={d.company} description={d.summary} path={`/experience/${entry.id}`}>
   <Fragment slot="hero">
@@ -28,6 +30,7 @@ const d = entry.data;
     <div class="prose">
       <p class="summary">{d.summary}</p>
       <Content />
+      <EntryGallery photos={gallery} />
     </div>
   </article>
   {next.id !== entry.id && <a class="next" href={`/${theme}/experience/${next.id}/`}><span>Next</span>{next.data.company} →</a>}
