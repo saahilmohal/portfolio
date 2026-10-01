@@ -36,7 +36,8 @@ const nameDate = (file: string) => {
   const m = file.match(/^(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?/);
   return m ? new Date(+m[1], (+(m[2] ?? 1)) - 1, +(m[3] ?? 1)).getTime() : 0;
 };
-const captionOf = (file: string) => file.replace(/^\d{4}(-\d{2})?(-\d{2})?-?/, '').replace(/[-_]+/g, ' ').trim();
+// Caption = file name without a leading date or a trailing "(1)", e.g. "Kotor, Montenegro (1).jpg" → "Kotor, Montenegro"
+const captionOf = (file: string) => file.replace(/^\d{4}(-\d{2})?(-\d{2})?-?/, '').replace(/\s*\(\d+\)\s*$/, '').replace(/[-_]+/g, ' ').replace(/,\s*$/, '').trim();
 
 export const photos = await Promise.all(
   Object.entries(photoFiles).map(async ([path, mod]) => {
