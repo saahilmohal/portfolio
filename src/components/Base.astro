@@ -3,6 +3,7 @@
 // `hero="full"` is the homepage; `hero="slim"` is a shorter banner for inner pages.
 import '../styles/site.css';
 import { site, themeName, type Theme } from '../lib';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props { theme: Theme; title?: string; description?: string; hero?: 'full' | 'slim'; path?: string }
 const { theme, title, description, hero = 'slim', path = '' } = Astro.props;
@@ -27,6 +28,7 @@ const external = (u: string) => /^https?:/.test(u);
   <link rel="canonical" href={`https://www.saahilmohal.com${base}${path}/`} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <ClientRouter />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Archivo:wdth,wght@62..125,400..900&family=Hanken+Grotesk:wght@400;500;600&display=swap" />
 </head>
 <body>
@@ -64,7 +66,7 @@ const external = (u: string) => /^https?:/.test(u);
   </main>
 
   {(music.file || music.youtube) && (
-    <button type="button" class="music" id="music" aria-pressed="false" data-file={music.file || ''} data-youtube={music.youtube || ''}>
+    <button type="button" class="music" id="music" transition:persist="music" aria-pressed="false" data-file={music.file || ''} data-youtube={music.youtube || ''}>
       <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="lbl">{music.label || 'Music'}</span>
     </button>
   )}
@@ -72,9 +74,15 @@ const external = (u: string) => /^https?:/.test(u);
   <script>
     import { sonar } from '../scripts/hero-sonar';
     import { hills } from '../scripts/hero-hills';
-    import { initPage } from '../scripts/page';
-    const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement;
-    initPage(canvas.dataset.kind === 's' ? sonar(canvas) : hills(canvas));
+    import { initPage, initMusic } from '../scripts/page';
+    // Pages swap in place (no full reload) so the music keeps playing between pages.
+    let cleanup: (() => void) | null = null;
+    document.addEventListener('astro:page-load', () => {
+      cleanup?.();
+      const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement;
+      cleanup = initPage(canvas.dataset.kind === 's' ? sonar(canvas) : hills(canvas));
+      initMusic();
+    });
   </script>
 </body>
 </html>

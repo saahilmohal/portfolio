@@ -1,38 +1,42 @@
-// Page behavior: hero animation loop, typed name, "at a glance" highlight, music button.
+// Page behavior: hero animation loop, typed name, "at a glance" highlight, photos, music.
+// The site moves between pages without a full reload (so music keeps playing), so
+// initPage runs on every page and returns a cleanup that tears the previous page down.
 type Scene = { resize: () => void; draw: (t: number) => void };
 
-export function initPage(scene: Scene) {
+export function initPage(scene: Scene): () => void {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const ac = new AbortController();
+  const on = { signal: ac.signal };
+  let alive = true;
+  const timers: number[] = [];
 
   // hero animation (pauses when scrolled out of view)
   scene.resize();
-  addEventListener('resize', scene.resize);
+  addEventListener('resize', scene.resize, on);
   let visible = true;
-  const hero = document.querySelector('.hero')!;
-  new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(hero);
+  const hero = document.querySelector('.hero');
+  const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; });
+  if (hero) io.observe(hero);
   if (reduce) scene.draw(6000);
   else {
-    const loop = (t: number) => { if (visible) scene.draw(t); requestAnimationFrame(loop); };
+    const loop = (t: number) => { if (!alive) return; if (visible) scene.draw(t); requestAnimationFrame(loop); };
     requestAnimationFrame(loop);
   }
-  document.fonts?.ready.then(() => { scene.resize(); if (reduce) scene.draw(6000); });
+  document.fonts?.ready.then(() => { if (!alive) return; scene.resize(); if (reduce) scene.draw(6000); });
 
   // typed name
   const typed = document.querySelector<HTMLElement>('h1 .typed');
   if (typed && !reduce) {
     const full = typed.dataset.text ?? '';
     let i = 0; typed.textContent = '';
-    const tick = () => { typed.textContent = full.slice(0, i); if (i++ < full.length) setTimeout(tick, i === 1 ? 350 : 70 + Math.random() * 70); };
+    const tick = () => { if (!alive) return; typed.textContent = full.slice(0, i); if (i++ < full.length) timers.push(window.setTimeout(tick, i === 1 ? 350 : 70 + Math.random() * 70)); };
     tick();
   }
 
-  // at a glance: the line closest to the middle of the screen lights up
+  // at a glance: hovering a line highlights it; otherwise the line nearest mid-screen lights up
   const items = [...document.querySelectorAll<HTMLElement>('.glance li')];
-  // hovering a line highlights that one; otherwise the highlight follows scroll
   let hovered = -1;
   const light = (k: number) => items.forEach((li, i) => li.classList.toggle('on', i === k));
-  items.forEach((li, i) => li.addEventListener('mouseenter', () => { hovered = i; light(i); }));
-  items[0]?.parentElement?.addEventListener('mouseleave', () => { hovered = -1; glance(); });
   const glance = () => {
     if (hovered >= 0) return;
     const mid = innerHeight / 2;
@@ -40,7 +44,9 @@ export function initPage(scene: Scene) {
     items.forEach((li, i) => { const r = li.getBoundingClientRect(); const d = Math.abs(r.top + r.height / 2 - mid); if (d < bestD) { bestD = d; best = i; } });
     light(best);
   };
-  if (!reduce && items.length) { addEventListener('scroll', glance, { passive: true }); glance(); }
+  items.forEach((li, i) => li.addEventListener('mouseenter', () => { hovered = i; light(i); }));
+  items[0]?.parentElement?.addEventListener('mouseleave', () => { hovered = -1; glance(); });
+  if (!reduce && items.length) { addEventListener('scroll', glance, { passive: true, signal: ac.signal }); glance(); }
 
   // random photo order: shuffle on every visit
   document.querySelectorAll<HTMLElement>('.photos[data-order="random"]').forEach((grid) => {
@@ -62,23 +68,29 @@ export function initPage(scene: Scene) {
     box.addEventListener('click', () => box.close());
   }
 
-  // music
+  return () => { alive = false; ac.abort(); io.disconnect(); timers.forEach(clearTimeout); };
+}
+
+// Music button: set up once. The button is kept across page changes, so the audio keeps playing.
+export function initMusic() {
   const btn = document.getElementById('music') as HTMLButtonElement | null;
-  if (!btn) return;
+  if (!btn || btn.dataset.ready) return;
+  btn.dataset.ready = '1';
   const lbl = btn.querySelector('.lbl')!;
   const idle = lbl.textContent;
   let audio: HTMLAudioElement | null = null;
   let yt: HTMLDivElement | null = null;
   btn.addEventListener('click', () => {
-    const on = btn.getAttribute('aria-pressed') !== 'true';
-    btn.setAttribute('aria-pressed', String(on));
-    lbl.textContent = on ? 'Playing · tap to stop' : idle;
+    const playing = btn.getAttribute('aria-pressed') !== 'true';
+    btn.setAttribute('aria-pressed', String(playing));
+    lbl.textContent = playing ? 'Playing · tap to stop' : idle;
     if (btn.dataset.file) {
       audio ??= Object.assign(new Audio(btn.dataset.file), { loop: true, volume: 0.35 });
-      on ? audio.play().catch(() => {}) : audio.pause();
+      playing ? audio.play().catch(() => {}) : audio.pause();
     } else if (btn.dataset.youtube) {
-      if (on) {
+      if (playing) {
         yt = document.createElement('div'); yt.className = 'yt';
+        yt.setAttribute('data-astro-transition-persist', 'music-yt');
         yt.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${btn.dataset.youtube}?autoplay=1&loop=1&playlist=${btn.dataset.youtube}" title="Background music" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
         document.body.appendChild(yt);
       } else { yt?.remove(); yt = null; }
