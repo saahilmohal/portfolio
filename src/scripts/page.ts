@@ -56,6 +56,34 @@ export function initPage(scene: Scene): () => void {
     figs.forEach((f, i) => { f.hidden = !!limit && i >= limit; grid.appendChild(f); });
   });
 
+  // Job/project pages on wide screens: photos sit beside the text until the text ends,
+  // then the remaining photos spread across the full width below it.
+  const detail = document.querySelector<HTMLElement>('.detail.has-media');
+  if (detail) {
+    const side = detail.querySelector<HTMLElement>('.side-media .photos')!;
+    const over = detail.querySelector<HTMLElement>('.overflow-media')!;
+    const overGrid = over.querySelector<HTMLElement>('.photos')!;
+    const prose = detail.querySelector<HTMLElement>('.prose')!;
+    const figs = [...side.children] as HTMLElement[];
+    const wide = matchMedia('(min-width: 1100px)');
+    const layout = () => {
+      if (!alive) return;
+      figs.forEach((f) => side.appendChild(f));
+      over.hidden = true;
+      if (!wide.matches) return;
+      const end = prose.getBoundingClientRect().bottom + 80; // allow a little overhang
+      const cut = figs.findIndex((f, i) => i > 0 && f.getBoundingClientRect().bottom > end);
+      if (cut < 0) return;
+      figs.slice(cut).forEach((f) => overGrid.appendChild(f));
+      over.hidden = false;
+    };
+    layout();
+    addEventListener('resize', layout, on);
+    wide.addEventListener('change', layout, on);
+    document.fonts?.ready.then(layout);
+    detail.querySelectorAll('video').forEach((v) => v.addEventListener('loadedmetadata', layout, { once: true }));
+  }
+
   // photo lightbox (Photography page)
   const box = document.getElementById('lightbox') as HTMLDialogElement | null;
   if (box) {

@@ -35,6 +35,7 @@ const gallery = entryPhotos('experience', entry.id);
       <Documents docs={d.documents} />
     </div>
     {gallery.length > 0 && <aside class="side-media"><EntryGallery photos={gallery} /></aside>}
+    {gallery.length > 0 && <div class="overflow-media" hidden><div class="photos"></div></div>}
   </article>
   {next.id !== entry.id && <a class="next" href={`/${theme}/experience/${next.id}/`}><span>Next</span>{next.data.company} →</a>}
 </Base>
