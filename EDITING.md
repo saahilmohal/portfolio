@@ -16,6 +16,7 @@ Both themes (`/s` Sonar and `/r` Rolling Hills) update together.
 | Write more about a job or project  | Open its file and write below the `---` lines. That text appears on its own page. |
 | Add pictures to a job/project page | Make a folder next to its file with the same name (e.g. `src/content/projects/smart-cat-feeder/`) and drop photos in. They show as a gallery at the bottom of that page, resized automatically. File name = caption; start names with `01-`, `02-` to set the order. To put one inside the text, write `![caption](./smart-cat-feeder/photo.jpg)` |
 | Change photo order                 | In `site.yaml`, set `photoOrder: "date"` (newest first, from the photo's metadata) or `"random"` (shuffled on every visit) |
+| Add a company logo or a PDF viewer to a job/project | At the top of its file add `logo: "<image link>"` and/or `documents:` with a `title` and `url` (a Google Drive share link works; set it to "Anyone with the link"). See `jefferson-millwork.md` for an example |
 | Update my resume                   | Update the Google Doc. The site links to saahilmohal.com/resume-redirect, a Cloudflare page rule |
 | Use my own music file              | Put an .mp3 in `public/music/`, then set `music.file: "/music/name.mp3"` in `site.yaml` |
 

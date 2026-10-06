@@ -1,6 +1,7 @@
 ---
 import Base from '../../../components/Base.astro';
 import EntryGallery from '../../../components/EntryGallery.astro';
+import Documents from '../../../components/Documents.astro';
 import { getExperience, dateRange, entryPhotos, THEMES, type Theme } from '../../../lib';
 import { render } from 'astro:content';
 export async function getStaticPaths() {
@@ -21,6 +22,7 @@ const gallery = entryPhotos('experience', entry.id);
   </Fragment>
   <article class="detail">
     <aside class="facts">
+      {d.logo && <div class="logo"><img src={d.logo} alt={`${'company' in d ? d.company : d.title} logo`} loading="lazy" /></div>}
       <dl>
         <div><dt>Dates</dt><dd>{d.label ?? dateRange(d.start, d.end)}</dd></div>
         {d.location && <div><dt>Location</dt><dd>{d.location}</dd></div>}
@@ -30,6 +32,7 @@ const gallery = entryPhotos('experience', entry.id);
     <div class="prose">
       <p class="summary">{d.summary}</p>
       <Content />
+      <Documents docs={d.documents} />
       <EntryGallery photos={gallery} />
     </div>
   </article>

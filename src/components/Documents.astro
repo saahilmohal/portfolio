@@ -1,0 +1,15 @@
+---
+// Scrollable PDF viewers. Accepts a Google Drive share link (…/file/d/ID/view) or a PDF path like /docs/file.pdf.
+interface Props { docs: { title: string; url: string }[] }
+const toEmbed = (u: string) => {
+  const m = u.match(/drive\.google\.com\/file\/d\/([^/?#]+)/);
+  return m ? `https://drive.google.com/file/d/${m[1]}/preview` : u;
+};
+const { docs } = Astro.props;
+---
+{docs.map((d) => (
+  <section class="doc-embed">
+    <div class="doc-head"><h2>{d.title}</h2><a href={d.url} target="_blank" rel="noopener">Open full screen ↗</a></div>
+    <div class="doc-frame"><iframe src={toEmbed(d.url)} title={d.title} loading="lazy" allow="autoplay"></iframe></div>
+  </section>
+))}

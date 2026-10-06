@@ -15,6 +15,8 @@ const experience = defineCollection({
     end: z.coerce.string().optional(), // leave out if current
     summary: z.string(),
     tags: z.array(z.string()).default([]),
+    logo: z.string().optional(),    // image URL or /path, shown at the top of the entry's page
+    documents: z.array(z.object({ title: z.string(), url: z.string() })).default([]), // PDFs shown as scrollable viewers
   }),
 });
 
@@ -29,6 +31,8 @@ const projects = defineCollection({
     date: z.coerce.string().optional(),
     summary: z.string(),
     tags: z.array(z.string()).default([]),
+    logo: z.string().optional(),    // image URL or /path, shown at the top of the entry's page
+    documents: z.array(z.object({ title: z.string(), url: z.string() })).default([]), // PDFs shown as scrollable viewers
   }),
 });
 
