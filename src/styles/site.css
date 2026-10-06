@@ -3,10 +3,10 @@
    Change a color here and it updates everywhere in that theme. */
 :root {
   color-scheme: dark;
-  --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --sans: "Geist", "Helvetica Neue", Arial, sans-serif;
-  --cond: "Archivo", "Arial Narrow", Arial, sans-serif;
-  --grot: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --mono: "Geist Mono Variable", "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --sans: "Geist Variable", "Geist", "Helvetica Neue", Arial, sans-serif;
+  --cond: "Archivo Variable", "Archivo", "Arial Narrow", Arial, sans-serif;
+  --grot: "Hanken Grotesk Variable", "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
 }
 [data-theme="s"] { --bg:#080808; --fg:#ecebe6; --soft:#c7c6c0; --mute:#85847e; --line:#1f1f1e; --acc:#ffb020; --body:var(--sans); --nav:var(--mono); }
 [data-theme="r"] { --bg:#0c0a09; --fg:#f3eee8; --soft:#d8cfc6; --mute:#8f857c; --line:#2a2420; --acc:#ff6a3d; --body:var(--grot); --nav:var(--grot); }

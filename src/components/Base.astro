@@ -1,6 +1,11 @@
 ---
 // Shared page shell: <head>, animated header, footer, music button.
 // `hero="full"` is the homepage; `hero="slim"` is a shorter banner for inner pages.
+// Fonts are bundled with the site (no Google Fonts requests): faster, and no visitor data sent to Google.
+import '@fontsource-variable/geist/index.css';
+import '@fontsource-variable/geist-mono/index.css';
+import '@fontsource-variable/archivo/wdth.css';
+import '@fontsource-variable/hanken-grotesk/index.css';
 import '../styles/site.css';
 import { site, themeName, type Theme } from '../lib';
 import { ClientRouter } from 'astro:transitions';
@@ -26,10 +31,7 @@ const external = (u: string) => /^https?:/.test(u);
   <meta name="theme-color" content={theme === 's' ? '#080808' : '#0c0a09'} />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="canonical" href={`https://www.saahilmohal.com${base}${path}/`} />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <ClientRouter />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Archivo:wdth,wght@62..125,400..900&family=Hanken+Grotesk:wght@400;500;600&display=swap" />
 </head>
 <body>
   <header class:list={['hero', { slim: hero === 'slim' }]}>

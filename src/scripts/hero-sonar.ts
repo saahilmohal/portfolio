@@ -30,7 +30,7 @@ export function sonar(canvas: HTMLCanvasElement) {
       }
     }
     g.fillStyle = '#ffb020'; g.beginPath(); g.arc(px, py, 3, 0, TAU); g.fill();
-    g.font = "10px 'Geist Mono', monospace"; g.fillStyle = 'rgba(255,176,32,.85)';
+    g.font = "10px 'Geist Mono Variable', monospace"; g.fillStyle = 'rgba(255,176,32,.85)';
     g.fillText('PING ' + (pr / 100).toFixed(1).padStart(4, ' ') + ' km', px + 10, py - 8);
   };
   return { resize, draw };
