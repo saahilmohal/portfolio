@@ -66,7 +66,9 @@ export const entryPhotos = (collection: 'experience' | 'projects', slug: string)
     .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
     .map(([path, mod]) => {
       const base = path.split('/').pop()!.replace(/\.[^.]+$/, '');
-      const caption = base.replace(/^\d+[-_ ]+/, '').replace(/\s*\(\d+\)\s*$/, '').replace(/[-_]+/g, ' ').trim();
+      const name = base.replace(/^\d+[-_ ]+/, '').replace(/\s*\(\d+\)\s*$/, '');
+      // "radome-test" → "radome test", but a name that already has spaces keeps its hyphens ("F-35 in flight")
+      const caption = (name.includes(' ') ? name.replace(/_+/g, ' ') : name.replace(/[-_]+/g, ' ')).trim();
       return { src: mod.default, caption };
     });
 

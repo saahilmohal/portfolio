@@ -6,6 +6,7 @@ start: 2025-06
 end: 2025-08
 summary: "Interned across Rotary & Mission Systems and Missiles & Fire Control on the F-35 program. Built a computer-vision pipeline that qualified a new EOTS frame material at 78% lower unit cost."
 tags: ["Python", "Computer vision", "MATLAB", "Machine learning"]
+logo: "/logos/lockheed-martin.png"
 ---
 <!--
   ✏️  The "summary" above shows on the homepage and the list page.
@@ -30,8 +31,8 @@ Proposed an ML classification system for military pilot training and helped arch
 
 ## Integrated Learning Environment
 
-Validated the web architecture's ability to consolidate simulator telemetry for the Royal Australian Air Force (RAAF). [Read the Lockheed Martin feature](https://www.lockheedmartin.com/en-us/news/features/2025/redefining-modeling-and-simulation-for-the-military.html).
+Validated the web architecture's ability to consolidate simulator telemetry for the Royal Australian Air Force (RAAF)..
 
 ## Promotional video
 
-Cast as a student pilot in a promotional video filmed at the Sikorsky Training Academy with Black Hawk helicopter assets.
+Cast as a student pilot in a promotional video filmed at the Sikorsky Training Academy with Black Hawk helicopter assets. Photos from the shoot, including me, appear in Lockheed Martin's feature [Redefining Modeling and Simulation for the Military](https://www.lockheedmartin.com/en-us/news/features/2025/redefining-modeling-and-simulation-for-the-military.html).
