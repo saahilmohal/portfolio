@@ -7,7 +7,7 @@ end: 2026-08
 summary: "Conceived and led the deployable Starlink satcom module for an unmanned underwater vehicle, built a 2,500 N thruster test rig through CDR, and architected the vehicle's HV power board and surface antenna system."
 tags: ["RF modeling", "Structures", "Siemens NX", "HV power", "Test & measurement", "Python"]
 logo: "/logos/odin-dynamics.png"
-logoBackground: "#000"
+logoBackground: "transparent"
 ---
 
 <!--
