@@ -6,7 +6,7 @@ start: 2024-05
 end: 2024-08
 summary: "Designed a field-ready GPS antenna testing module, tested a phased array antenna, and built LVDS test fixtures with custom tooling that sped up assembly by over 30%."
 tags: ["SolidWorks", "Prototyping", "Thermal", "RF testing"]
-logo: "https://mms.businesswire.com/media/20250530635118/en/1062970/22/logo_CACI_HR.jpg"
+logo: "/logos/caci.png"
 ---
 <!--
   ✏️  The "summary" above shows on the homepage and the list page.

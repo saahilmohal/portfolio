@@ -6,7 +6,7 @@ label: "Summer 2022"
 start: 2022-06   # only used for ordering; the label above is what shows
 summary: "Produced 76 construction and renovation drawings for federal projects, including the U.S. Cannon House and the FERC renovation in Washington, D.C."
 tags: ["Drafting", "Construction drawings"]
-logo: "https://jeffersonmillwork.com/wp-content/uploads/JMD-Logo-1.png"
+logo: "/logos/jefferson-millwork.png"
 documents:
   - title: "FERC renovation drawings (excerpt)"
     url: "https://drive.google.com/file/d/1WxckDrw6vNecEns1xC8wM9MqlVvS1m65/view"

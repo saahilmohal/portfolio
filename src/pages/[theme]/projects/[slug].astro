@@ -22,7 +22,7 @@ const gallery = entryPhotos('projects', entry.id);
   </Fragment>
   <article class="detail">
     <aside class="facts">
-      {d.logo && <div class="logo">{[d.logo].flat().map((src) => <img src={src} alt="Logo" loading="lazy" referrerpolicy="no-referrer" />)}</div>}
+      {d.logo && <div class="logo" style={d.logoBackground ? `background:${d.logoBackground}` : undefined}>{[d.logo].flat().map((src) => <img src={src} alt="Logo" loading="lazy" referrerpolicy="no-referrer" />)}</div>}
       <dl>
         {d.label && <div><dt>Type</dt><dd>{d.label}</dd></div>}
         {d.date && <div><dt>Started</dt><dd>{yearOf(d.date)}</dd></div>}

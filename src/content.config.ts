@@ -16,6 +16,7 @@ const experience = defineCollection({
     summary: z.string(),
     tags: z.array(z.string()).default([]),
     logo: z.union([z.string(), z.array(z.string())]).optional(), // one image link, or a list of them, shown at the top of the entry's page
+    logoBackground: z.string().optional(), // card color behind the logo, e.g. "#000" (default white)
     documents: z.array(z.object({ title: z.string(), url: z.string() })).default([]), // PDFs shown as scrollable viewers
   }),
 });
@@ -32,6 +33,7 @@ const projects = defineCollection({
     summary: z.string(),
     tags: z.array(z.string()).default([]),
     logo: z.union([z.string(), z.array(z.string())]).optional(), // one image link, or a list of them, shown at the top of the entry's page
+    logoBackground: z.string().optional(), // card color behind the logo, e.g. "#000" (default white)
     documents: z.array(z.object({ title: z.string(), url: z.string() })).default([]), // PDFs shown as scrollable viewers
   }),
 });
