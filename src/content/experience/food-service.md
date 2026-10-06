@@ -7,6 +7,10 @@ start: 2022-01   # only used for ordering; the label above is what shows
 home: false
 summary: "Three years in fast-paced food service: cashier, cookie decorator, and sub maker, including inventory and baking schedules at Crumbl."
 tags: ["Customer service"]
+logo:
+  - "https://bpando.org/wp-content/uploads/1-Crumbl-Cookies-Logo-Logotype-Custom-Typeface-Branding-Turner-Duckworth-BPO.jpg"
+  - "https://www.pngfind.com/pngs/m/535-5357188_win-chili-cookoff-tickets-at-burgerfi-burgerfi-logo.png"
+  - "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA47X88Fsis4WnDoO9fAUc_hyMrphc_0zrOm3FxMrEbA&s=10"
 ---
 <!--
   ✏️  The "summary" above shows on the homepage and the list page.
