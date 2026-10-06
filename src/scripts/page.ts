@@ -78,8 +78,8 @@ export function initPage(scene: Scene): () => void {
     };
     // start fetching the full-size version as soon as the pointer is over a photo
     const warm = (el: HTMLImageElement) => { if (!el.dataset.warm) { el.dataset.warm = '1'; new Image().src = largest(el); } };
-    document.querySelectorAll<HTMLElement>('.photos figure').forEach((fig) => fig.addEventListener('pointerenter', () => warm(fig.querySelector('img')!)));
-    document.querySelectorAll<HTMLElement>('.photos figure').forEach((fig) => fig.addEventListener('click', () =>
+    document.querySelectorAll<HTMLElement>('.photos figure:not(.video)').forEach((fig) => fig.addEventListener('pointerenter', () => warm(fig.querySelector('img')!)));
+    document.querySelectorAll<HTMLElement>('.photos figure:not(.video)').forEach((fig) => fig.addEventListener('click', () =>
       open(fig.querySelector('img')!, fig.querySelector('figcaption')?.textContent ?? '')));
     document.querySelectorAll<HTMLImageElement>('.prose img').forEach((el) => el.addEventListener('click', () => open(el, el.alt)));
     box.addEventListener('click', () => box.close());
