@@ -65,7 +65,20 @@ export function initPage(scene: Scene): () => void {
         .sort((a, b) => parseInt(b[1] || '0') - parseInt(a[1] || '0'))[0];
       return best?.[0] || el.currentSrc || el.src;
     };
-    const open = (el: HTMLImageElement, caption: string) => { img.src = largest(el); img.alt = el.alt; cap.textContent = caption; box.showModal(); };
+    // Show the small version you clicked right away (already loaded, so no flash of the previous photo),
+    // then swap in the full-size version once it has finished loading.
+    let token = 0;
+    const open = (el: HTMLImageElement, caption: string) => {
+      const mine = ++token;
+      img.src = el.currentSrc || el.src; img.alt = el.alt; cap.textContent = caption;
+      box.showModal();
+      const full = new Image();
+      full.onload = () => { if (mine === token && box.open) img.src = full.src; };
+      full.src = largest(el);
+    };
+    // start fetching the full-size version as soon as the pointer is over a photo
+    const warm = (el: HTMLImageElement) => { if (!el.dataset.warm) { el.dataset.warm = '1'; new Image().src = largest(el); } };
+    document.querySelectorAll<HTMLElement>('.photos figure').forEach((fig) => fig.addEventListener('pointerenter', () => warm(fig.querySelector('img')!)));
     document.querySelectorAll<HTMLElement>('.photos figure').forEach((fig) => fig.addEventListener('click', () =>
       open(fig.querySelector('img')!, fig.querySelector('figcaption')?.textContent ?? '')));
     document.querySelectorAll<HTMLImageElement>('.prose img').forEach((el) => el.addEventListener('click', () => open(el, el.alt)));
