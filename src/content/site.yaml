@@ -4,7 +4,7 @@
 # ─────────────────────────────────────────────────────────────
 
 # Which theme saahilmohal.com opens by default: "s" (Sonar) or "r" (Rolling Hills)
-defaultTheme: "r"
+defaultTheme: "s"
 
 name: "Saahil Mohal"
 eyebrow: "Georgia Tech · B.S./M.S. ’27"
