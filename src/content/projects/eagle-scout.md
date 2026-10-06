@@ -5,6 +5,11 @@ label: "Scouts"
 order: 8
 summary: "Planned, fundraised, and led volunteers to build a bench and Little Library at the Potomac Station pool and clubhouse."
 tags: ["Leadership", "Fundraising", "Construction"]
+documents:
+  - title: "Donation request form"
+    url: "https://drive.google.com/file/d/1YBGmMp7v4I_p3b4HElwdsfNu9Ju-mp-T/view"
+  - title: "Project drawing"
+    url: "https://drive.google.com/file/d/1HYg-8p9W16k8kXi8HiYAjhQR---pfxmd/view"
 ---
 <!--
   ✏️  The "summary" above shows on the homepage and the list page.
