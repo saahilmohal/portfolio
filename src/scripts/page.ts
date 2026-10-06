@@ -74,18 +74,29 @@ export function initPage(scene: Scene): () => void {
       if (!wide.matches) { figs.forEach((f) => side.appendChild(f)); over.hidden = true; return; }
       figs.forEach((f) => f.remove());
       over.hidden = false;
+      // A photo alone under the text spans the full text width; two or more sit two across.
+      const fit = () => overGrid.classList.toggle('single', overGrid.children.length === 1);
+      const put = (f: HTMLElement, col: HTMLElement) => { col.appendChild(f); fit(); };
       const ends = () => [side.getBoundingClientRect().bottom, textCol.getBoundingClientRect().bottom];
       const gap = () => { const [a, b] = ends(); return Math.abs(a - b); };
       // Two simple placement rules; run both and keep whichever leaves the columns more even.
-      const shorterColumn = () => figs.forEach((f, i) => { const [a, b] = ends(); (i === 0 || a <= b ? side : overGrid).appendChild(f); });
+      const shorterColumn = () => figs.forEach((f, i) => { const [a, b] = ends(); put(f, i === 0 || a <= b ? side : overGrid); });
       const mostEven = () => figs.forEach((f, i) => {
-        side.appendChild(f); if (i === 0) return;
-        const beside = Math.max(...ends()); overGrid.appendChild(f);
-        if (Math.max(...ends()) >= beside) side.appendChild(f);
+        put(f, side); if (i === 0) return;
+        const beside = Math.max(...ends()); put(f, overGrid);
+        if (Math.max(...ends()) >= beside) put(f, side);
       });
-      shorterColumn(); const first = gap(); const pick = figs.map((f) => f.parentElement);
-      figs.forEach((f) => f.remove()); mostEven();
-      if (gap() > first) figs.forEach((f, i) => pick[i]!.appendChild(f));
+      const allBeside = () => figs.forEach((f) => put(f, side));
+      // Score = how far the page runs past the longer column, plus how uneven the two are.
+      const score = () => Math.max(...ends()) + gap();
+      let best = Infinity, pick: (ParentNode | null)[] = [];
+      for (const rule of [shorterColumn, mostEven, allBeside]) {
+        figs.forEach((f) => f.remove()); fit(); rule();
+        const sc = score();
+        if (sc < best) { best = sc; pick = figs.map((f) => f.parentElement); }
+      }
+      figs.forEach((f) => f.remove()); fit();
+      figs.forEach((f, i) => put(f, pick[i] as HTMLElement));
       over.hidden = overGrid.children.length === 0;
     };
     const relayout = () => { if (!queued) { queued = true; requestAnimationFrame(layout); } };
