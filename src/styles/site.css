@@ -131,7 +131,11 @@ footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
 .entry-photos h2 { margin-top: 0; }
 .entry-photos .photos { grid-template-columns: repeat(3, 1fr); }
 .entry-photos .photos.few { grid-template-columns: repeat(2, 1fr); }
-.entry-photos .photos figure { aspect-ratio: 4/3; }
+.entry-photos .photos { gap: 20px 14px; }
+.entry-photos .photos figure { aspect-ratio: auto; background: none; border-radius: 0; overflow: visible; }
+.entry-photos .photos figure img { aspect-ratio: 4/3; height: auto; border-radius: 4px; background: var(--line); }
+.entry-photos .photos figure:hover img { transform: none; opacity: .85; }
+.entry-photos .photos figcaption { position: static; margin-top: 8px; font-size: 12px; line-height: 1.4; color: var(--mute); text-shadow: none; }
 .prose img { cursor: zoom-in; }
 .prose .photos img { margin: 0; border-radius: 0; }
 
