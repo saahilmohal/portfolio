@@ -92,7 +92,7 @@ footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
 .eyebrow a:hover { color: var(--fg); }
 .aside, .intro { font-size: 15px; color: var(--mute); margin: 28px 0 0; }
 .intro { margin: 0 0 24px; max-width: 60ch; font-size: 17px; line-height: 1.55; color: var(--soft); }
-.aside a { color: var(--fg); }
+.aside a, .intro a { color: var(--fg); text-decoration-color: var(--acc); }
 
 /* inner pages */
 .hero.slim { min-height: 380px; }

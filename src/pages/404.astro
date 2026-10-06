@@ -1,0 +1,11 @@
+---
+import Base from '../components/Base.astro';
+import { site } from '../lib';
+const theme = site.defaultTheme === 's' ? 's' : 'r';
+---
+<Base theme={theme} title="Page not found" path="">
+  <Fragment slot="hero"><p class="eyebrow"><b>●</b>&nbsp; 404</p><h2 class="page-title">Page not found</h2></Fragment>
+  <section class="block">
+    <p class="intro">That page doesn't exist, or it moved. Try the <a href={`/${theme}/`}>homepage</a>, <a href={`/${theme}/experience/`}>experience</a>, or <a href={`/${theme}/projects/`}>projects</a>.</p>
+  </section>
+</Base>

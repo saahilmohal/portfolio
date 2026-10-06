@@ -24,3 +24,9 @@ Easiest way to edit on GitHub: open the file, press the pencil icon, edit, then 
 To upload photos: open `src/photos/` on GitHub → "Add file" → "Upload files".
 
 Or just ask Claude: "add this project to my portfolio" with the details and photos.
+
+## Good to know
+
+- **Security headers** live in `public/_headers` (Cloudflare reads it). If you ever embed something new from another site (e.g. a YouTube video) and it shows blank, that file's `frame-src` line needs the site added.
+- **Link previews** (LinkedIn, iMessage, Slack) use `public/og-r.png` and `public/og-s.png`. Ask Claude to regenerate them if the homepage changes a lot.
+- **Photos from your phone/drone** usually contain GPS location. The site strips it from what it serves, but the originals in this repo are public, so strip location before uploading (Windows: right-click → Properties → Details → "Remove Properties and Personal Information").
