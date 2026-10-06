@@ -56,32 +56,45 @@ export function initPage(scene: Scene): () => void {
     figs.forEach((f, i) => { f.hidden = !!limit && i >= limit; grid.appendChild(f); });
   });
 
-  // Job/project pages on wide screens: photos sit beside the text until the text ends,
-  // then the remaining photos spread across the full width below it.
+  // Job/project pages on wide screens: photos fill the right-hand column and, once the
+  // write-up ends, the space under the text too. Each photo goes to whichever column is
+  // shorter, so both columns finish at about the same height. Phones: all photos below.
   const detail = document.querySelector<HTMLElement>('.detail.has-media');
   if (detail) {
     const side = detail.querySelector<HTMLElement>('.side-media .photos')!;
     const over = detail.querySelector<HTMLElement>('.overflow-media')!;
     const overGrid = over.querySelector<HTMLElement>('.photos')!;
-    const prose = detail.querySelector<HTMLElement>('.prose')!;
+    const textCol = detail.querySelector<HTMLElement>('.prose')!;
     const figs = [...side.children] as HTMLElement[];
     const wide = matchMedia('(min-width: 1100px)');
+    let queued = false;
     const layout = () => {
+      queued = false;
       if (!alive) return;
-      figs.forEach((f) => side.appendChild(f));
-      over.hidden = true;
-      if (!wide.matches) return;
-      const end = prose.getBoundingClientRect().bottom + 80; // allow a little overhang
-      const cut = figs.findIndex((f, i) => i > 0 && f.getBoundingClientRect().bottom > end);
-      if (cut < 0) return;
-      figs.slice(cut).forEach((f) => overGrid.appendChild(f));
+      if (!wide.matches) { figs.forEach((f) => side.appendChild(f)); over.hidden = true; return; }
+      figs.forEach((f) => f.remove());
       over.hidden = false;
+      const ends = () => [side.getBoundingClientRect().bottom, textCol.getBoundingClientRect().bottom];
+      const gap = () => { const [a, b] = ends(); return Math.abs(a - b); };
+      // Two simple placement rules; run both and keep whichever leaves the columns more even.
+      const shorterColumn = () => figs.forEach((f, i) => { const [a, b] = ends(); (i === 0 || a <= b ? side : overGrid).appendChild(f); });
+      const mostEven = () => figs.forEach((f, i) => {
+        side.appendChild(f); if (i === 0) return;
+        const beside = Math.max(...ends()); overGrid.appendChild(f);
+        if (Math.max(...ends()) >= beside) side.appendChild(f);
+      });
+      shorterColumn(); const first = gap(); const pick = figs.map((f) => f.parentElement);
+      figs.forEach((f) => f.remove()); mostEven();
+      if (gap() > first) figs.forEach((f, i) => pick[i]!.appendChild(f));
+      over.hidden = overGrid.children.length === 0;
     };
+    const relayout = () => { if (!queued) { queued = true; requestAnimationFrame(layout); } };
     layout();
-    addEventListener('resize', layout, on);
-    wide.addEventListener('change', layout, on);
-    document.fonts?.ready.then(layout);
-    detail.querySelectorAll('video').forEach((v) => v.addEventListener('loadedmetadata', layout, { once: true }));
+    addEventListener('resize', relayout, on);
+    wide.addEventListener('change', relayout, on);
+    document.fonts?.ready.then(relayout);
+    detail.querySelectorAll('img').forEach((im) => { if (!im.complete) im.addEventListener('load', relayout, { once: true }); });
+    detail.querySelectorAll('video').forEach((v) => v.addEventListener('loadedmetadata', relayout, { once: true }));
   }
 
   // photo lightbox (Photography page)

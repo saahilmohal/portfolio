@@ -33,9 +33,9 @@ const gallery = entryPhotos('projects', entry.id);
       <p class="summary">{d.summary}</p>
       <Content />
       <Documents docs={d.documents} />
+      {gallery.length > 0 && <div class="overflow-media" hidden><div class="photos"></div></div>}
     </div>
     {gallery.length > 0 && <aside class="side-media"><EntryGallery photos={gallery} /></aside>}
-    {gallery.length > 0 && <div class="overflow-media" hidden><div class="photos"></div></div>}
   </article>
   {next.id !== entry.id && <a class="next" href={`/${theme}/projects/${next.id}/`}><span>Next</span>{next.data.title} →</a>}
 </Base>
