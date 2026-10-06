@@ -28,10 +28,10 @@ readout:
 # "At a glance" lines — keep each one short.
 glance:
   - "4 internships"
-  - "Underwater satcom"
-  - "F-35 computer vision"
-  - "HV power distribution"
   - "B.S. + M.S. in 4 years"
+  - "Experience at defense giants"
+  - "Subsystem ownership at startups"
+  - "Proven multidisciplinary skills"
 
 # About section on the homepage: an education line, then two columns, then a personal note.
 about:
